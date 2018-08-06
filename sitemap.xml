@@ -23,11 +23,6 @@
   </url>
   
   <url>
-    <loc>https://julian.bayardo.info/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://julian.bayardo.info/tags/functional-programming/</loc>
     <lastmod>2018-06-02T20:51:15-03:00</lastmod>
     <priority>0</priority>
