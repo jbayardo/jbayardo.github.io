@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graph Theory on Julian through the Lens</title>
+    <link>https://julian.bayardo.info/tags/graph-theory/</link>
+    <description>Recent content in Graph Theory on Julian through the Lens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 Apr 2016 20:28:23 -0300</lastBuildDate>
+    
+	<atom:link href="https://julian.bayardo.info/tags/graph-theory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Yet Another Proof of Brooke&#39;s Theorem</title>
+      <link>https://julian.bayardo.info/posts/yet-another-proof-of-brookes-theorem/</link>
+      <pubDate>Sat, 30 Apr 2016 20:28:23 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/posts/yet-another-proof-of-brookes-theorem/</guid>
+      <description>A classical result from Graph theory is that given \(G\) an undirected graph:
+\chi(G) \leq \Delta(G) + 1  Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&amp;rsquo;s Theorem.
+The usual way to prove this result is to use the Greedy coloring algorithm: go through every node, and pick the lowest color not yet used by any of its neighbors.</description>
+    </item>
+    
+  </channel>
+</rss>

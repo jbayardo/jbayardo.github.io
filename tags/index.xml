@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Julian through the Lens</title>
+    <link>https://julian.bayardo.info/tags/</link>
+    <description>Recent content in Tags on Julian through the Lens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Jun 2018 20:51:15 -0300</lastBuildDate>
+    
+	<atom:link href="https://julian.bayardo.info/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Functional Programming</title>
+      <link>https://julian.bayardo.info/tags/functional-programming/</link>
+      <pubDate>Sat, 02 Jun 2018 20:51:15 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/functional-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Graph Theory</title>
+      <link>https://julian.bayardo.info/tags/graph-theory/</link>
+      <pubDate>Sat, 30 Apr 2016 20:28:23 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/graph-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Haskell</title>
+      <link>https://julian.bayardo.info/tags/haskell/</link>
+      <pubDate>Sat, 02 Jun 2018 20:51:15 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/haskell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linear Algebra</title>
+      <link>https://julian.bayardo.info/tags/linear-algebra/</link>
+      <pubDate>Fri, 24 Jul 2015 20:09:13 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/linear-algebra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Math</title>
+      <link>https://julian.bayardo.info/tags/math/</link>
+      <pubDate>Wed, 02 May 2018 20:26:06 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Probability</title>
+      <link>https://julian.bayardo.info/tags/probability/</link>
+      <pubDate>Wed, 02 May 2018 20:26:06 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/probability/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
