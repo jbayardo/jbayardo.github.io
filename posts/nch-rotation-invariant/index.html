@@ -7,7 +7,7 @@
 <title>NCH is roto-translation invariant | Julian through the Lens</title>
 
 <meta property='og:title' content='NCH is roto-translation invariant - Julian through the Lens'>
-<meta property='og:description' content='Introduction I have recently started my thesis on 3D surface reconstruction. One way to do so is to basically define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. NCH is one method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.'>
+<meta property='og:description' content='Introduction I have recently started my thesis on 3D surface reconstruction. One way to do so is to define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. NCH is a method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.'>
 <meta property='og:url' content='https://julian.bayardo.info/posts/nch-rotation-invariant/'>
 <meta property='og:site_name' content='Julian through the Lens'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/fdbc036a46f3c0903c7e39459db599c0?s=256'><meta property='article:author' content='https://facebook.com/bayardo.julian'><meta property='article:section' content='Posts'><meta property='article:tag' content='thesis'><meta property='article:tag' content='non-convex hull'><meta property='article:tag' content='linear-algebra'><meta property='article:published_time' content='2018-08-20T19:23:28-03:00'/><meta property='article:modified_time' content='2018-08-20T19:23:28-03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@BayardoJulian'><meta name='twitter:creator' content='@BayardoJulian'>
@@ -118,15 +118,15 @@
 
 <h1 id="introduction">Introduction</h1>
 
-<p>I have recently started my thesis on 3D surface reconstruction. One way to do so is to basically define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. <a href="http://mesh.brown.edu/nch/Taubin-sga2013-brief.pdf">NCH</a> is one method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.</p>
+<p>I have recently started my thesis on 3D surface reconstruction. One way to do so is to define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. <a href="http://mesh.brown.edu/nch/Taubin-sga2013-brief.pdf">NCH</a> is a method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.</p>
 
-<p>The NCH algorithm is remarkable due to its simplicity: it took me an afternoon to implement and see it working with no previous experience in 3D whatsoever (using the <a href="https://github.com/PointCloudLibrary/pcl">PCL</a>, of course!). However, it has two big shortcomings: finding $f$ is $\mathcal{O}(n^2)$, and evaluating $f$ at any point is $\mathcal{O}(n)$; this makes it a really expensive algorithm, considering that most surfaces are well into the many thousands of points.</p>
+<p>The NCH algorithm is ashtonishingly simple: it took me an afternoon to implement and see it working with no previous experience in 3D whatsoever (using the <a href="https://github.com/PointCloudLibrary/pcl">PCL</a>, of course!). However, it has two big shortcomings: finding $f$ is $\mathcal{O}(n^2)$, and evaluating $f$ at any point is $\mathcal{O}(n)$; this makes it a really expensive algorithm, considering that most surfaces are well into the many thousands of points.</p>
 
-<p>If you read the paper, it will be clear that it is so simple there is no clear way to reduce the amount of computation it has to do while also preserving the good theoretical properties it has. The objective of my thesis is quite undefined for now, but it is clear that it will be about simplification: finding ways to cut down the number of points that you have to feed to the algorithm, in order to make it feasible to run it on larger point clouds.</p>
+<p>If you read the paper, it will be clear that it is so simple there is no obvious way to reduce the amount of computation it has to do while also preserving the good theoretical properties it has. The objective of my thesis is quite undefined for now, but it will be about simplification: finding ways to cut down the number of points that you have to feed to the algorithm, in order to make it feasible to run it on larger point clouds.</p>
 
 <p>Whatever I end up doing, I will certainly be using this blog as an archive of proofs and whatever interesting things I learn throughout, with the hope that by the day I have to sit down and write my thesis I will at least have some stuff already written down, or at least a clearer picture.</p>
 
-<p>What follows is the first proof I made, which fills a gap the paper does not, namely, proving that the algorithm is insensitive to rotation and translation of the points it is fed.</p>
+<p>What follows is the first proof I made, which fills a gap the paper does not, namely, proving that the algorithm is insensitive to rotation and translation of the points it is given.</p>
 
 <h1 id="definitions">Definitions</h1>
 
@@ -182,7 +182,7 @@ f_i&rsquo;(Qx) &amp; = n_i&rsquo;^t (Qx - p_i&rsquo;) - \rho_i&rsquo; || Qx - p_
 
 <p>$$f_i&rsquo;(x + c) = f_i(x)$$</p>
 
-<p>Derived out of $c$ cancelling out in the sum, and finally:</p>
+<p>Derived out of $c$ canceling out in the sum, and finally:</p>
 
 <p>$$f&rsquo;(x + c) = f(x)$$</p>
 
@@ -196,7 +196,7 @@ f_i&rsquo;(Qx) &amp; = n_i&rsquo;^t (Qx - p_i&rsquo;) - \rho_i&rsquo; || Qx - p_
 
 <p>$$f&rsquo;(x + c) = 0$$</p>
 
-<p>Which implies that the moved point $x + c$ is part of the surface. This of course works both ways, because of the equalities we stablished above.</p>
+<p>Which implies that the moved point $x + c$ is part of the surface. This of course works both ways, because of the equalities we established above.</p>
 
       
     </div>
