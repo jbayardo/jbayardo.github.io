@@ -1,1 +1,0 @@
-# jbayardo.github.io

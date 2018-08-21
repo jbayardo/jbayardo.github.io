@@ -13,10 +13,10 @@
     
     <item>
       <title>NCH is roto-translation invariant</title>
-      <link>https://julian.bayardo.info/posts/nch-rotation-invariant/</link>
+      <link>https://julian.bayardo.info/posts/nch-roto-translation-invariant/</link>
       <pubDate>Mon, 20 Aug 2018 19:23:28 -0300</pubDate>
       
-      <guid>https://julian.bayardo.info/posts/nch-rotation-invariant/</guid>
+      <guid>https://julian.bayardo.info/posts/nch-roto-translation-invariant/</guid>
       <description>Introduction I have recently started my thesis on 3D surface reconstruction. One way to do so is to define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. NCH is a method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.</description>
     </item>
     
