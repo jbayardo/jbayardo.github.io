@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://julian.bayardo.info/posts/nch-finding-a-metric/</loc>
+    <lastmod>2018-09-09T18:49:10-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://julian.bayardo.info/posts/nch-closing-the-gap/</loc>
     <lastmod>2018-08-21T01:10:11-03:00</lastmod>
   </url>
@@ -52,13 +57,13 @@
   
   <url>
     <loc>https://julian.bayardo.info/</loc>
-    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+    <lastmod>2018-09-09T18:49:10-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://julian.bayardo.info/tags/linear-algebra/</loc>
-    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+    <lastmod>2018-09-09T18:49:10-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -70,13 +75,13 @@
   
   <url>
     <loc>https://julian.bayardo.info/tags/non-convex-hull/</loc>
-    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+    <lastmod>2018-09-09T18:49:10-03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://julian.bayardo.info/posts/</loc>
-    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+    <lastmod>2018-09-09T18:49:10-03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -94,7 +99,7 @@
   
   <url>
     <loc>https://julian.bayardo.info/tags/thesis/</loc>
-    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+    <lastmod>2018-09-09T18:49:10-03:00</lastmod>
     <priority>0</priority>
   </url>
   

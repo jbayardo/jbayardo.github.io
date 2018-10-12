@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en-us">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>NCH: finding a metric for point removal | Julian through the Lens</title>
+
+<meta property='og:title' content='NCH: finding a metric for point removal - Julian through the Lens'>
+<meta property='og:description' content='Introduction The objective of my thesis is to find ways to remove points from the input point cloud to NCH, while managing to guarantee that the error incurred is not too big. Clearly, the last sentence is far from specific: I haven&rsquo;t defined a metric, nor said what &ldquo;too big&rdquo; means.
+Before we begin, let&rsquo;s recap on what the definition of the NCH function looks like:
+$$ f(x) = \max_{1 \leq i \leq N} f_i(x) $$'>
+<meta property='og:url' content='https://julian.bayardo.info/posts/nch-finding-a-metric/'>
+<meta property='og:site_name' content='Julian through the Lens'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/fdbc036a46f3c0903c7e39459db599c0?s=256'><meta property='article:author' content='https://facebook.com/bayardo.julian'><meta property='article:section' content='Posts'><meta property='article:tag' content='thesis'><meta property='article:tag' content='non-convex hull'><meta property='article:tag' content='linear-algebra'><meta property='article:published_time' content='2018-09-09T18:49:10-03:00'/><meta property='article:modified_time' content='2018-09-09T18:49:10-03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@BayardoJulian'><meta name='twitter:creator' content='@BayardoJulian'>
+<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://julian.bayardo.info/"><h1 class="title is-4">Julian through the Lens</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile"><a class="level-item" aria-label="email" href='mailto:julian@bayardo.info' target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="facebook" href='https://facebook.com/bayardo.julian' target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="github" href='https://github.com/jbayardo' target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="instagram" href='https://instagram.com/bayardo.julian' target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/jbayardo' target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="twitter" href='https://twitter.com/BayardoJulian' target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/thesis">#thesis</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/non-convex-hull">#non-convex hull</a>
+  
+  | <a class="subtitle is-6" href="/tags/linear-algebra">#linear-algebra</a>
+  
+
+      
+    </div>
+    <h2 class="subtitle is-6">September 9, 2018</h2>
+    <h1 class="title">NCH: finding a metric for point removal</h1>
+    
+    <div class="content">
+      
+
+<h1 id="introduction">Introduction</h1>
+
+<p>The objective of my thesis is to find ways to remove points from the input point cloud to NCH, while managing to guarantee that the error incurred is not too big. Clearly, the last sentence is far from specific: I haven&rsquo;t defined a metric, nor said what &ldquo;too big&rdquo; means.</p>
+
+<p>Before we begin, let&rsquo;s recap on what the definition of the NCH function looks like:</p>
+
+<p>$$
+f(x) = \max_{1 \leq i \leq N} f_i(x)
+$$</p>
+
+<p>This defines the implicitly reconstructed surface $f(x) = 0$, where the $f_i(x)$ are basis functions, defined one per point in the cloud as:</p>
+
+<p>$$
+f_i(x) = \langle n_i, x - p_i \rangle - \rho_i ||x - p_i||^2
+$$</p>
+
+<p>$f(x)$ has a really good property: it is a Signed Distance Function; this means, according to <a href="https://en.wikipedia.org/wiki/Signed_distance_function">Wikipedia</a>:</p>
+
+<blockquote>
+<p>The signed distance function (or oriented distance function) of a set $\Omega$ in a metric space determines the distance of a given point $x$ from the boundary of $\Omega$, with the sign determined by whether $x$ is in $\Omega$. The function has positive values at points $x$ inside $\Omega$, it decreases in value as $x$ approaches the boundary of $\Omega$ where the signed distance function is zero, and it takes negative values outside of $\Omega$</p>
+</blockquote>
+
+<p>Thus, informally: $f(x) &gt; 0$ when $x$ is inside the reconstructed surface, $f(x) = 0$ at its border, and $f(x) &lt; 0$ outside of it.</p>
+
+<h1 id="what-a-metric-should-look-like">What a metric should look like</h1>
+
+<p>An intuitive setting to use when analyzing a simplification algorithm would go something like this: given a finite set of oriented points $\mathcal{P} = \{p_1, &hellip;, p_N\}$ with normals $\{n_1, &hellip;, n_N \}$ and the associated NCH function $f(x)$ (and basis functions $f_i(x)$), we want to find $\mathcal{P}&rsquo; \subset \mathcal{P}$ such that its NCH function $g(x)$ (and basis functions $g_j(x)$) defines a surface that is similar to the one defined by $f$.</p>
+
+<p>The problem here lies in how to measure the new surface&rsquo;s &ldquo;similarity to $f$&rdquo;. There is a lot of reading to be done on this topic alone, of course. At first sight it seems that, ideally, one would compute the <a href="https://en.wikipedia.org/wiki/Hausdorff_distance">Hausdorff Distance</a> between the two volumes, and be done with the problem.</p>
+
+<p>In practice, this is hard to compute: you have to take a maximum over supremums and infimums over all points in the surface. The practical way to approach this problem involves extracting the surface from the level curve into a mesh, and then measuring distance between meshes. This is the approach that <a href="http://vcg.isti.cnr.it/publications/papers/metro.pdf">Metro</a> takes, for example.</p>
+
+<p>The methodology is problematic: you have to first transform the level curve into a mesh, which means running Marching Cubes or a similar algorithm; these have their own set of parameters and of course add error into the process of computing the metric.</p>
+
+<p>A yet to be published paper on NCH simplification by my thesis advisor takes a different route, and looks at the value of $g$ at the points that were removed while simplifying the point cloud. This makes sense <em>because</em> $g$ is a signed distance function: $|g(p_h)|$, where $p_h$ is a removed point, gives a metric as to &ldquo;how far away a point you knew was on the border of the surface is when you remove that point and reconstruct the surface again&rdquo;. This, however, is basically a proxy to what we actually want to measure, which is the point&rsquo;s distance to the border of the reconstructed surface.</p>
+
+<h1 id="measuring-distance-to-the-isosurface">Measuring distance to the isosurface</h1>
+
+<p>In this context, I started trying to find the distance from $p_h$ to the isosurface. First thing I did was to formulate the problem:</p>
+
+<p>\begin{align}
+&amp;\operatorname{minimize}&amp; &amp; || p - p_h || \\<br />
+&amp;\operatorname{subject\;to}
+&amp; &amp;f(p) = 0
+\end{align}</p>
+
+<p>Being a computer scientist with a relatively low knowledge of math, I did what any other person would do: Google. This led me to Boyd and Vandenberghe&rsquo;s great book on Convex Optimization, which</p>
+
+<h2 id="attempt-1-convex-optimization">Attempt 1: Convex Optimization</h2>
+
+<p>Notice that $|| p - p_h ||$ is a convex function. However, $f(p)$ is a maximum over concave functions, which doesn&rsquo;t tell you anything of worth for solving this. The key here is to look at the value of $f(p_h)$:</p>
+
+<ol>
+<li>If $f(p_h) = 0$, then even though we removed $p_h$, some other point ended up defining the same radius, and thus we don&rsquo;t incur any error out of the simplification (i.e., we don&rsquo;t need to account for this case).</li>
+<li>If $f(p_h) &lt; 0$, then we can just look for $f(p) \geq 0$, because $p_h$ is outside of the surface, and thus looking for a point that is inside of it will always give a point at the border.</li>
+<li>If $f(p_h) &gt; 0$, then the point is inside the surface, and thus we can look for $f(p) \leq 0$, under the same reasoning as above.</li>
+</ol>
+
+<h3 id="handling-f-p-h-0">Handling $f(p_h) &lt; 0$</h3>
+
+<p>In this case, the problem turns into</p>
+
+<p>\begin{align}
+&amp;\operatorname{minimize}&amp; &amp; || p - p_h || \\<br />
+&amp;\operatorname{subject\;to}
+&amp; &amp; -f_i(p) \leq 0, \quad i = 1,\dots,N
+\end{align}</p>
+
+<p>This is great, because now we have a convex cost function with convex constraints, and this is readily solvable using any convex optimization package.</p>
+
+<p>I took a black-box approach to this and used <a href="http://www.cvxpy.org/"><code>cvxpy</code></a> to model this with success, in roughly 20 lines of Python.</p>
+
+<h3 id="handling-f-p-h-0-1">Handling $f(p_h) &gt; 0$</h3>
+
+<p>This case is slightly more problematic than the previous one:</p>
+
+<p>\begin{align}
+&amp;\operatorname{minimize}&amp; &amp; || p - p_h || \\<br />
+&amp;\operatorname{subject\;to}
+&amp; &amp; f_i(p) \leq 0, \quad i = 1,\dots,N
+\end{align}</p>
+
+<p>However, $f_i(p)$ are all now concave constraints. I got stuck with this here, my understanding of convex optimization is lacking to say the least, so I couldn&rsquo;t find any way to turn this into something I can use.</p>
+
+<h2 id="attempt-2-optimization-with-derivatives">Attempt 2: Optimization with Derivatives</h2>
+
+<p>I found <a href="http://iquilezles.org/www/articles/distance/distance.htm">this post by Inigo Quilez</a>, where he basically applies one round of Newton&rsquo;s method as a way to find a lower bound for the distance of a point to the surface. There are a few problems here:</p>
+
+<ul>
+<li>First and foremost, it assumes that the function is differentiable. This is not necessarily true in our case, as $f(x)$ is a maximum.</li>
+<li>It also assumes that the first order Taylor approximation to $f(x)$ is accurate. For this to be true, the intersection point has got to be sufficiently close to the surface. This may not be true in our case: there is <em>a priori</em> no upper bound to how the surface may change due to a point removal.</li>
+</ul>
+
+<p>If you plot $f(x)$ for a few examples and stare at it long enough, it starts to look like it is really well behaved. Thus, I set out to try to prove whatever I could in terms of continuity and differentiability.</p>
+
+<h3 id="f-x-is-differentiable-almost-everywhere">$f(x)$ is differentiable almost everywhere</h3>
+
+<p>The first thing to notice is that all $f_i(x)$ are $\mathcal{C}^\infty$; there is nothing to prove here, as this is an elementary fact. Since these are all smooth functions, <a href="https://unapologetic.wordpress.com/2011/05/04/continuously-differentiable-functions-are-locally-lipschitz/">they are also locally Lipschitz</a>. Now we can use <a href="http://www.math.jyu.fi/research/reports/rep100.pdf">Lemma 2.1 from these lectures</a> to establish that $f(x)$ is locally Lipschitz (as it is a supremum over a finite set of functions). Finally, Rademacher&rsquo;s theorem, proven in the same notes, tells us that $f(x)$ is almost-everywhere differentiable. Now we need to figure out what the derivative of $f(x)$ actually is.</p>
+
+<p>Towards this purpose, we can define $J(x) = \{ i : f_i(x) = f(x) \}$, that is, the set of points that achieve the maximum for a given point. In principle, $J(x) \neq \phi$ for sure, as every point has at least one function that determines the maximum. It may be a singleton, or it may be of size up to $N$ (the number of points).</p>
+
+<p>In the escenario in which $J(x) = \{ i \}$, if you write down the directional derivative at the point, then it will become the expression for the directional derivative of $f_i(x)$. This tells me that $\nabla f(x) = \nabla f_i(x)$. This is the case for most points, except for the boundaries where the value of $f(x)$ &ldquo;changes hands&rdquo;.</p>
+
+<p>If we look at the case when there are many such points, then things become much harder. The only thing I was able to see clearly is that, if all $f_i(x)$ that determine the value of $f(x)$ have the same gradient, then that will be $f(x)$&rsquo;s gradient. But this is far from useful in this context.</p>
+
+<p>This was as far as I was able to get, but this also gave me a few ideas as to what to do next.</p>
+
+<h3 id="lagrange-multipliers">Lagrange Multipliers</h3>
+
+<p>Perhaps the most well known constrained optimization method in existence is that of Lagrange Multipliers. They also seemed to solve <em>exactly</em> the same problem I was looking to solve. So I set on my way to write the Lagrangian down for my problem:</p>
+
+<p>$$\mathcal{L}(p, \lambda) = -||p - p_h||^2 - \lambda f(p) $$</p>
+
+<p>This becomes weird really fast: since $p$ can move around, the value of $f(p)$ could be determined by any basis function, so we can&rsquo;t really optimize it this way. There&rsquo;s an unexplored alternative here, which is to do Lagrange Multipliers with multiple $\leq$ constraints; it just seemed too complicated.</p>
+
+<h3 id="gradient-descent">Gradient Descent</h3>
+
+<p>Inspired by the deep learning hype that has been going around for the last few years, it seemed reasonable to frame this as optimizing a non-convex cost function such as this:</p>
+
+<p>$$\mathcal{L}(p) = ||p - p_h||^2 + \lambda f(p)^2 $$</p>
+
+<p>And this in fact works out to some degree, but the solution is still lacking. Depending on the $\lambda$ regularization you use (and learning rate), its possible to get a reasonably good approximation in as little as 4 gradient updates. This is all using as gradient for $f(p)$ the gradient of the basis that achieves the maximum, as established above.</p>
+
+<h3 id="newton-s-method">Newton&rsquo;s Method</h3>
+
+<p>TODO: New experiments with Newton.</p>
+
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
