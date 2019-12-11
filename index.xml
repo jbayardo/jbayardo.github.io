@@ -58,7 +58,7 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
       
       <guid>https://julian.bayardo.info/yet-another-proof-of-brookes-theorem/</guid>
       <description>A classical result from Graph theory is that given \(G\) an undirected graph:
-Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&#39;s Theorem.
+\chi(G) \leq \Delta(G) + 1  Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&#39;s Theorem.
 The usual way to prove this result is to use the Greedy coloring algorithm: go through every node, and pick the lowest color not yet used by any of its neighbors.</description>
     </item>
     
@@ -69,9 +69,8 @@ The usual way to prove this result is to use the Greedy coloring algorithm: go t
       
       <guid>https://julian.bayardo.info/matrix-trace-characterization/</guid>
       <description>I have been studying for my finals lately, and so I decided to put together a proof of a nice exercise I found in some book. The trace function, given by \(tr : \mathbb{K}^{n \times n} \to \mathbb{K}\), is defined as
-First of all, the proof of additivity
-Afterwards, the proof of homogeneity
-Hence, \(tr\) is a linear transform from the vector space \(\mathbb{K}^{n \times n}\) into \(\mathbb{K}\). The cool thing about the trace is that it has many more interesting properties which are not difficult to prove.</description>
+tr(A) = \sum_{i=1}^n A_{ii}  First of all, the proof of additivity
+\begin{equation} \begin{split} tr(A + B) &amp;= \sum_{i=1}^n (A+B)_{ii} \\ &amp;= \sum_{i=1}^n (A)_{ii} + (B)_{ii} \\ &amp;= \sum_{i=1}^n (A)_{ii} + \sum_{i=1}^n (B)_{ii} \\ &amp;= tr(A) + tr(B) \end{split} \end{equation}  Afterwards, the proof of homogeneity</description>
     </item>
     
   </channel>
