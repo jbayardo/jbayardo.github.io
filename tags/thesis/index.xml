@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>thesis on Julian through the Lens</title>
+    <link>https://julian.bayardo.info/tags/thesis/</link>
+    <description>Recent content in thesis on Julian through the Lens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Aug 2018 01:10:11 -0300</lastBuildDate>
+    
+	<atom:link href="https://julian.bayardo.info/tags/thesis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NCH: closing the gap</title>
+      <link>https://julian.bayardo.info/nch-closing-the-gap/</link>
+      <pubDate>Tue, 21 Aug 2018 01:10:11 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/nch-closing-the-gap/</guid>
+      <description>Introduction Following up with my last post on NCH being roto-translation invariant, the idea of this one is to cover what I consider the most important gaps left by the original brief paper. My expectation is that doing this will help understand better why NCH works, and hopefully gain some insight into how to improve it.
+Equivalence of formulations Equation (4) in the paper says:
+$$f_i^{r_i} (x) = \frac{1}{2 r_i} (r_i^2 - || x - (p_i + r_i n_i) ||^2)$$</description>
+    </item>
+    
+    <item>
+      <title>NCH is roto-translation invariant</title>
+      <link>https://julian.bayardo.info/nch-roto-translation-invariant/</link>
+      <pubDate>Mon, 20 Aug 2018 19:23:28 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/nch-roto-translation-invariant/</guid>
+      <description>Introduction I have recently started my thesis on 3D surface reconstruction. One way to do so is to define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. NCH is a method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.</description>
+    </item>
+    
+  </channel>
+</rss>
