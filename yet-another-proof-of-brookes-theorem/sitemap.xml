@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://julian.bayardo.info/</loc>
+    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/linear-algebra/</loc>
+    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/nch-closing-the-gap/</loc>
+    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/non-convex-hull/</loc>
+    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/</loc>
+    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/thesis/</loc>
+    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/nch-roto-translation-invariant/</loc>
+    <lastmod>2018-08-20T19:23:28-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/functional-programming/</loc>
+    <lastmod>2018-06-02T20:51:15-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/haskell/</loc>
+    <lastmod>2018-06-02T20:51:15-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/processing-trees-recursion-schemes/</loc>
+    <lastmod>2018-06-02T20:51:15-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/math/</loc>
+    <lastmod>2018-05-02T20:26:06-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/probability/</loc>
+    <lastmod>2018-05-02T20:26:06-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/understanding-modulo-bias/</loc>
+    <lastmod>2018-05-02T20:26:06-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/graph-theory/</loc>
+    <lastmod>2016-04-30T20:28:23-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/yet-another-proof-of-brookes-theorem/</loc>
+    <lastmod>2016-04-30T20:28:23-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/matrix-trace-characterization/</loc>
+    <lastmod>2015-07-24T20:09:13-03:00</lastmod>
+  </url>
+  
+</urlset>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>probability on Julian through the Lens</title>
+    <link>https://julian.bayardo.info/tags/probability/</link>
+    <description>Recent content in probability on Julian through the Lens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 May 2018 20:26:06 -0300</lastBuildDate>
+    
+	<atom:link href="https://julian.bayardo.info/tags/probability/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Understanding Modulo Bias</title>
+      <link>https://julian.bayardo.info/understanding-modulo-bias/</link>
+      <pubDate>Wed, 02 May 2018 20:26:06 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/understanding-modulo-bias/</guid>
+      <description>It is often said that this code:
+unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&#39;m going to try and explore this topic in a more formal fashion than I have seen so far.
+The reason why it is bad is pretty elementary and easy to understand: imagine you have a random generator that outputs values between \(0\) and \(9\) (i.</description>
+    </item>
+    
+  </channel>
+</rss>

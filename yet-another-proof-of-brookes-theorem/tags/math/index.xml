@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>math on Julian through the Lens</title>
+    <link>https://julian.bayardo.info/tags/math/</link>
+    <description>Recent content in math on Julian through the Lens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 May 2018 20:26:06 -0300</lastBuildDate>
+    
+	<atom:link href="https://julian.bayardo.info/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Understanding Modulo Bias</title>
+      <link>https://julian.bayardo.info/understanding-modulo-bias/</link>
+      <pubDate>Wed, 02 May 2018 20:26:06 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/understanding-modulo-bias/</guid>
+      <description>It is often said that this code:
+unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&#39;m going to try and explore this topic in a more formal fashion than I have seen so far.
+The reason why it is bad is pretty elementary and easy to understand: imagine you have a random generator that outputs values between \(0\) and \(9\) (i.</description>
+    </item>
+    
+    <item>
+      <title>Yet Another Proof of Brooke&#39;s Theorem</title>
+      <link>https://julian.bayardo.info/yet-another-proof-of-brookes-theorem/</link>
+      <pubDate>Sat, 30 Apr 2016 20:28:23 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/yet-another-proof-of-brookes-theorem/</guid>
+      <description>A classical result from Graph theory is that given \(G\) an undirected graph:
+Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&#39;s Theorem.
+The usual way to prove this result is to use the Greedy coloring algorithm: go through every node, and pick the lowest color not yet used by any of its neighbors.</description>
+    </item>
+    
+    <item>
+      <title>Characterizing the trace of a matrix</title>
+      <link>https://julian.bayardo.info/matrix-trace-characterization/</link>
+      <pubDate>Fri, 24 Jul 2015 20:09:13 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/matrix-trace-characterization/</guid>
+      <description>I have been studying for my finals lately, and so I decided to put together a proof of a nice exercise I found in some book. The trace function, given by \(tr : \mathbb{K}^{n \times n} \to \mathbb{K}\), is defined as
+First of all, the proof of additivity
+Afterwards, the proof of homogeneity
+Hence, \(tr\) is a linear transform from the vector space \(\mathbb{K}^{n \times n}\) into \(\mathbb{K}\). The cool thing about the trace is that it has many more interesting properties which are not difficult to prove.</description>
+    </item>
+    
+  </channel>
+</rss>
