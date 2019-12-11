@@ -129,17 +129,21 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
     </tr>
 </table>
 <p>So, effectively, the \(P(\text{randomNumber} = 2) = \frac{3}{10}\); in contrast, \(P(\text{randomNumber} = 0) = \frac{4}{10}\). Essentially, the problem lies in the fact that since \(k\) does not evenly divide <code>RAND_MAX</code>, this gets you up to \(1\) more value falling into the first few numbers in the range. To get a feeling for this, you can play around with the plot below, which shows the precise probabilities for different values of <code>RAND_MAX</code> and \(k\):</p>
-<form>
-    <fieldset>
-      <label for="modulo-bias-M"><code>RAND_MAX</code></label>
-      <input id="modulo-bias-M" type="number" min="0" max="1000" value="11" step="1" onChange="redrawModuloBiasPlot()" placeholder="M">
-    </fieldset>
-    <fieldset>
-        <label for="modulo-bias-k">k</label>
-        <input id="modulo-bias-k" type="number" min="1" max="1000" value="10" step="1" onChange="redrawModuloBiasPlot()" placeholder="k">
-    </fieldset>
-</form>
-<div id="modulo-bias-plot" style="width:600px;height:400px;"></div>
+<div style="display:flex;margin:auto;">
+  <div style="flex:0 0 40%;margin-top:50pt;">
+    <form>
+        <fieldset>
+          <label for="modulo-bias-M"><code>RAND_MAX</code></label>
+          <input id="modulo-bias-M" type="number" min="0" max="1000" value="11" step="1" onChange="redrawModuloBiasPlot()" placeholder="M">
+        </fieldset>
+        <fieldset>
+            <label for="modulo-bias-k">k</label>
+            <input id="modulo-bias-k" type="number" min="1" max="1000" value="10" step="1" onChange="redrawModuloBiasPlot()" placeholder="k">
+        </fieldset>
+    </form>
+  </div>
+  <div id="modulo-bias-plot" style="flex:1;"></div>
+</div>
 <script src="https://cdn.plot.ly/plotly-1.36.1.min.js"></script>
 <script>
   function generateModuloBiasPlotData(M, k) {
@@ -206,7 +210,9 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
         },
         yaxis: {
           title: 'Probability'
-        }
+        },
+        width: 400,
+        height: 400
       }
     });
   }
@@ -241,11 +247,15 @@ P(Y = i) = \frac{\lfloor \frac{M - 1 - i}{k} \rfloor + 1}{M}
 <h1 id="how-bad-is-it">How bad is it?</h1>
 <p>How bad this is depends on what you are doing. A more interesting question is how to quantify how bad it can be. One way to go about quantifying is to measure how different the distribution of \(Y\) is with respect to the distribution of \(Z\); <a href="https://en.wikipedia.org/wiki/Divergence_(statistics)">there are a myriad of ways to do this</a>, but I am going to use the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a>.</p>
 <p>Thus, suppose \(Z\) was a uniformly distributed random variable such that \(R_Z = \{0, .., k - 1\}\) (i.e. the actual distribution we wanted to achieve). Given some \(M\), we know that \(k\) can range between \(1 \leq k \leq M - 1\); for each of these values, we have one probability distribution, call it \(Y\), and we can compute \(\text{KL}(Z||Y)\):</p>
-<fieldset>
-    <label for="modulo-distribution-M">M</label>
-    <input id="modulo-distribution-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloDistributionPlot()" placeholder="M">
-</fieldset>
-<div id="modulo-distribution-plot" style="width:600px;height:600px;"></div>
+<div style="display:flex;margin:auto;">
+  <div style="flex:0 0 40%;margin-top:50pt;">
+    <fieldset>
+        <label for="modulo-distribution-M">M</label>
+        <input id="modulo-distribution-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloDistributionPlot()" placeholder="M">
+    </fieldset>
+  </div>
+  <div id="modulo-distribution-plot" style="flex:1;"></div>
+</div>
 <script>
   function generateModuloDistributionPlotData(M) {
   	var targets = Array(M - 1);
@@ -301,13 +311,14 @@ P(Y = i) = \frac{\lfloor \frac{M - 1 - i}{k} \rfloor + 1}{M}
         type: 'scatter'
       }],
       layout: {
-        title: 'Divergence of the sampled distribution vs the uniform distribution',
         xaxis: {
           title: 'k'
         },
         yaxis: {
           title: 'KL(Z||Y)'
-        }
+        },
+        width: 400,
+        height: 400
       }
     });
   }
@@ -354,11 +365,15 @@ randomNumber = randomNumber % k;
 </code></pre>
 <p>We don't really need to do anything to prove that this is correct: it is clear that the first four lines sample a number from the range \(\{0, &hellip;, \lfloor \frac{M}{k} \rfloor k - 1\}\) uniformly at random (from the proof of the previous scheme), and then using modulo on that changes it to a uniform distribution with the desired range (due to the first scheme's proof).</p>
 <p>The only interesting change here is the number of calls to <code>rand()</code>. Now, the probability that a number is in the desired range for the loop is \( \frac{M - (M \% k)}{M} = 1 - \frac{M \% k}{M}\), and thus the number of iterations is \(N \sim \text{Geometric}(1 - \frac{M \% k}{M})\). We can now look at the expected number of iterations for different values of \(k\) and \(M\):</p>
-<fieldset>
-  <label for="modulo-expectation-M">M</label>
-  <input id="modulo-expectation-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloExpectationPlot()" placeholder="M">
-</fieldset>
-<div id="modulo-expectation-plot" style="width:600px;height:600px;"></div>
+<div style="display:flex;margin:auto;">
+  <div style="flex:0 0 40%;margin-top:50pt;">
+    <fieldset>
+      <label for="modulo-expectation-M">M</label>
+      <input id="modulo-expectation-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloExpectationPlot()" placeholder="M">
+    </fieldset>
+  </div>
+  <div id="modulo-expectation-plot" style="flex:1;"></div>
+</div>
 <script>
   function generateModuloExpectationPlotData(M) {
     var targets = Array(M - 1);
@@ -410,13 +425,15 @@ randomNumber = randomNumber % k;
         type: 'scatter'
       }],
       layout: {
-        title: 'Expected number of iterations as a function of k',
+        title: 'Expected iterations as a function of k',
         xaxis: {
           title: 'k'
         },
         yaxis: {
           title: 'E[N]'
-        }
+        },
+        height: 400,
+        width: 400,
       }
     });
   }
@@ -442,11 +459,15 @@ P(N > t) &= (\frac{M \% k}{M})^t\\
 \end{split}
 </script>
 <p>The closer \( \lfloor \frac{M}{k} \rfloor \frac{k}{M} \) is to \(1\), the less probable it will be to spend more iterations. Of course, this term looks pretty similar to the expected number of iterations, just inverted and divided by two:</p>
-<fieldset>
-  <label for="modulo-cdf-M">M</label>
-  <input id="modulo-cdf-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloCDFPlot()" placeholder="M">
-</fieldset>
-<div id="modulo-cdf-plot" style="width:600px;height:600px;"></div>
+<div style="display:flex;margin:auto;">
+  <div style="flex:0 0 40%;margin-top:50pt;">
+    <fieldset>
+      <label for="modulo-cdf-M">M</label>
+      <input id="modulo-cdf-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloCDFPlot()" placeholder="M">
+    </fieldset>
+  </div>
+  <div id="modulo-cdf-plot" style="flex:1;"></div>
+</div>
 <script>
   function generateModuloCDFPlotData(M) {
     var targets = Array(M - 1);
@@ -498,13 +519,15 @@ P(N > t) &= (\frac{M \% k}{M})^t\\
         type: 'scatter'
       }],
       layout: {
-        title: 'Evolution of the second term as a function of k',
+        title: 'Second term as a function of k',
         xaxis: {
           title: 'k'
         },
         yaxis: {
           title: 'Second Term'
-        }
+        },
+        width: 400,
+        height: 400,
       }
     });
   }
@@ -532,8 +555,6 @@ P(N > t) &= (\frac{M \% k}{M})^t\\
     
   </div>
 </section>
-
-    <script src="/js/copycode.js"></script>
 
 
 

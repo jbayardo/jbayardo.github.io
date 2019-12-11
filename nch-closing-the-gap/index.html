@@ -147,8 +147,10 @@ $$</p>
 &amp; = \max_{p_j \in \mathcal{P}, i \neq j} \{ 0, \frac{\text{cos_sim} (n_i, p_j - p_i)}{|| p_j - p_i ||} \} \\<br>
 \end{align}</p>
 <p>Where $\text{cos_sim}$ denotes the <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> between the two vectors; i.e. the angle between them. For the following plots, I have set $p_i = (1, 1)$ and $n_i = (1, 0)$, and plotted the component in the maximum above for the given points (notice $p_i$ is NOT included in the plot, for obvious reasons), as well as the cosine similarity:</p>
-<div id="rho-component-plot"></div>
-<div id="cosine-similarity-plot"></div>
+<div style="display:flex;margin:auto;">
+  <div id="rho-component-plot" style="flex:0 0 50%;"></div>
+  <div id="cosine-similarity-plot" style="flex:1;"></div>
+</div>
 <p>Results are as you would expect: towards the outside of the surface (i.e. in the inverse direction as the normal) we get negative values, and towards the inside we get positive. However, contribution of a point to the maximum decreases really fast as you move away from the center point, because the cosine similarity is bounded between $-1$ and $1$, while the distance it is divided by can be arbitrarily large.</p>
 <p>This may be an interesting way to construct an heuristic to speed up NCH: process only the $O(\sqrt N)$ points that are closest when computing the rho.</p>
 <script src="//cdn.plot.ly/plotly-1.36.1.min.js"></script>
@@ -208,8 +210,8 @@ $$</p>
       }],
       layout: {
         title: title,
-        width: 500,
-        height: 500
+        width: 400,
+        height: 400
       }
     });
   }
