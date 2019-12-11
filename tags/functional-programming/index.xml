@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Functional Programming on Julian through the Lens</title>
+    <title>functional-programming on Julian through the Lens</title>
     <link>https://julian.bayardo.info/tags/functional-programming/</link>
-    <description>Recent content in Functional Programming on Julian through the Lens</description>
+    <description>Recent content in functional-programming on Julian through the Lens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 02 Jun 2018 20:51:15 -0300</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Processing Trees with Recursion Schemes</title>
-      <link>https://julian.bayardo.info/posts/processing-trees-recursion-schemes/</link>
+      <link>https://julian.bayardo.info/processing-trees-recursion-schemes/</link>
       <pubDate>Sat, 02 Jun 2018 20:51:15 -0300</pubDate>
       
-      <guid>https://julian.bayardo.info/posts/processing-trees-recursion-schemes/</guid>
+      <guid>https://julian.bayardo.info/processing-trees-recursion-schemes/</guid>
       <description>A long time ago, I was in touch with a production system whose purpose was to run a piece of data through a decision tree. At every step, the output could be Good, Bad, Move Left, or Move Right; there were no leaves, since at the end you were supposed to always have returned either Good or Bad (this means it would be an error for you to get there).</description>
     </item>
     

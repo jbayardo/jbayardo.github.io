@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Julian through the Lens</title>
@@ -6,13 +6,40 @@
     <description>Recent content in Tags on Julian through the Lens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Jun 2018 20:51:15 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 21 Aug 2018 01:10:11 -0300</lastBuildDate>
     
 	<atom:link href="https://julian.bayardo.info/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Functional Programming</title>
+      <title>linear-algebra</title>
+      <link>https://julian.bayardo.info/tags/linear-algebra/</link>
+      <pubDate>Tue, 21 Aug 2018 01:10:11 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/linear-algebra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>non-convex hull</title>
+      <link>https://julian.bayardo.info/tags/non-convex-hull/</link>
+      <pubDate>Tue, 21 Aug 2018 01:10:11 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/non-convex-hull/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thesis</title>
+      <link>https://julian.bayardo.info/tags/thesis/</link>
+      <pubDate>Tue, 21 Aug 2018 01:10:11 -0300</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/thesis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>functional-programming</title>
       <link>https://julian.bayardo.info/tags/functional-programming/</link>
       <pubDate>Sat, 02 Jun 2018 20:51:15 -0300</pubDate>
       
@@ -21,16 +48,7 @@
     </item>
     
     <item>
-      <title>Graph Theory</title>
-      <link>https://julian.bayardo.info/tags/graph-theory/</link>
-      <pubDate>Sat, 30 Apr 2016 20:28:23 -0300</pubDate>
-      
-      <guid>https://julian.bayardo.info/tags/graph-theory/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Haskell</title>
+      <title>haskell</title>
       <link>https://julian.bayardo.info/tags/haskell/</link>
       <pubDate>Sat, 02 Jun 2018 20:51:15 -0300</pubDate>
       
@@ -39,16 +57,7 @@
     </item>
     
     <item>
-      <title>Linear Algebra</title>
-      <link>https://julian.bayardo.info/tags/linear-algebra/</link>
-      <pubDate>Sun, 09 Sep 2018 18:49:10 -0300</pubDate>
-      
-      <guid>https://julian.bayardo.info/tags/linear-algebra/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Math</title>
+      <title>math</title>
       <link>https://julian.bayardo.info/tags/math/</link>
       <pubDate>Wed, 02 May 2018 20:26:06 -0300</pubDate>
       
@@ -57,16 +66,7 @@
     </item>
     
     <item>
-      <title>Non Convex Hull</title>
-      <link>https://julian.bayardo.info/tags/non-convex-hull/</link>
-      <pubDate>Sun, 09 Sep 2018 18:49:10 -0300</pubDate>
-      
-      <guid>https://julian.bayardo.info/tags/non-convex-hull/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Probability</title>
+      <title>probability</title>
       <link>https://julian.bayardo.info/tags/probability/</link>
       <pubDate>Wed, 02 May 2018 20:26:06 -0300</pubDate>
       
@@ -75,11 +75,11 @@
     </item>
     
     <item>
-      <title>Thesis</title>
-      <link>https://julian.bayardo.info/tags/thesis/</link>
-      <pubDate>Sun, 09 Sep 2018 18:49:10 -0300</pubDate>
+      <title>graph-theory</title>
+      <link>https://julian.bayardo.info/tags/graph-theory/</link>
+      <pubDate>Sat, 30 Apr 2016 20:28:23 -0300</pubDate>
       
-      <guid>https://julian.bayardo.info/tags/thesis/</guid>
+      <guid>https://julian.bayardo.info/tags/graph-theory/</guid>
       <description></description>
     </item>
     
