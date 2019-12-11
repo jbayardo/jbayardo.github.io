@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="en-us">
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -11,25 +11,49 @@
 <meta property='og:url' content='https://julian.bayardo.info/processing-trees-recursion-schemes/'>
 <meta property='og:site_name' content='Julian through the Lens'>
 <meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/fdbc036a46f3c0903c7e39459db599c0?s=256'><meta property='article:section' content=''><meta property='article:tag' content='functional-programming'><meta property='article:tag' content='haskell'><meta property='article:published_time' content='2018-06-02T20:51:15-03:00'/><meta property='article:modified_time' content='2018-06-02T20:51:15-03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@'><meta name='twitter:creator' content='@'>
+
+
+<link href="https://julian.bayardo.info/index.xml" rel="alternate" type="application/rss+xml" title="Julian through the Lens" />
+
 <link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="canonical" href="https://julian.bayardo.info/processing-trees-recursion-schemes/">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-
-
 <section class="section">
   <div class="container">
-    <nav class="nav">
-      <div class="nav-left">
-        <a class="nav-item" href="https://julian.bayardo.info/"><h1 class="title is-4">Julian through the Lens</h1></a>
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://julian.bayardo.info/">
+          <h1 id="nav-heading" class="title is-4">Julian through the Lens</h1>
+        </a>
       </div>
       <div class="nav-right">
-        <nav class="nav-item level is-mobile"><a class="level-item" aria-label="email" href='mailto:julian@bayardo.info' target='_blank' rel='noopener'>
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="rss" href='/index.xml'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="github" href='https://github.com/jbayardo'
+            target='_blank' rel='noopener'>
+            <span class="icon">
+              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a><a class="level-item" aria-label="email" href='mailto:julian@bayardo.info'
+            target='_blank' rel='noopener'>
             <span class="icon">
               <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
     
@@ -38,15 +62,8 @@
     
   </svg></i>
             </span>
-          </a><a class="level-item" aria-label="github" href='https://github.com/jbayardo' target='_blank' rel='noopener'>
-            <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-    
-  </svg></i>
-            </span>
-          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/jbayardo' target='_blank' rel='noopener'>
+          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/jbayardo'
+            target='_blank' rel='noopener'>
             <span class="icon">
               <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
     
@@ -65,8 +82,8 @@
     </nav>
 
   </div>
+  <script src="/js/navicon-shift.js"></script>
 </section>
-
 <section class="section">
   <div class="container">
     <div class="subtitle tags is-6 is-pulled-right">
@@ -94,7 +111,21 @@
 <p>The problem came when you wanted to do something with the nodes that was not supported within the scripting language, such as accessing APIs. In these cases, you had to go into each server that had the code in it, and replace the compiled Java classes with your new node's code, to then restart the server, causing it to detect your new code. Suffice it to say, this was a pain, and of course very much error prone.</p>
 <p>A few days ago, I was running through <a href="https://twitter.com/importantshock">Patrick Thomson</a>&lsquo;s <a href="http://blog.sumtypeofway.com/an-introduction-to-recursion-schemes/">Introduction to Recursion Schemes</a> and this problem came to mind again. I thought it might be a good exercise in learning recursion schemes; and thus here we are. Before we start, you may want to go through at least the first one or two posts in Patrick's tutorials. Also, I'll be using Edward Kmett's <a href="https://hackage.haskell.org/package/recursion-schemes">recursion-schemes</a> throughout, along with several language extensions and what not; you can see the finished code <a href="https://github.com/jbayardo/rule-engine">in my GitHub repository</a>.</p>
 <p>To start with, we'll have our Tree:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">import</span> <span style="color:#719e07">qualified</span> Data.Functor.Foldable.TH <span style="color:#719e07">as</span> R
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">import</span> <span style="color:#719e07">qualified</span> Data.Functor.Foldable.TH <span style="color:#719e07">as</span> R
 
 <span style="color:#268bd2">data</span> <span style="color:#dc322f">Tree</span> a
   <span style="color:#719e07">=</span> <span style="color:#dc322f">Node</span> { value <span style="color:#719e07">::</span> <span style="color:#719e07">!</span>a
@@ -104,23 +135,89 @@
   <span style="color:#268bd2">deriving</span> (<span style="color:#dc322f">Functor</span>, <span style="color:#dc322f">Foldable</span>, <span style="color:#dc322f">Traversable</span>, <span style="color:#dc322f">Show</span>)
 
 <span style="color:#dc322f">R</span><span style="color:#719e07">.</span>makeBaseFunctor <span style="color:#dc322f">&#39;&#39;Tree</span>
-</code></pre></div><p><strong>Observation:</strong> this type allows you to write trees that never end. We have no way to brace against this in the type system (that I know of), but you can definitely ask for the <code>left</code> and <code>right</code> to be strict, which would mean any such program would hang at the moment you try to make such a value, I think.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Observation:</strong> this type allows you to write trees that never end. We have no way to brace against this in the type system (that I know of), but you can definitely ask for the <code>left</code> and <code>right</code> to be strict, which would mean any such program would hang at the moment you try to make such a value, I think.</p>
 <p>This <code>makeBaseFunctor</code> call ensures that we get the additional <code>TreeF</code> type with the &ldquo;continuation holes&rdquo; for the type. And then we'll have two crucial types:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">data</span> <span style="color:#dc322f">Movement</span>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">data</span> <span style="color:#dc322f">Movement</span>
   <span style="color:#719e07">=</span> <span style="color:#dc322f">L</span>
   <span style="color:#719e07">|</span> <span style="color:#dc322f">R</span>
   <span style="color:#268bd2">deriving</span> (<span style="color:#dc322f">Show</span>, <span style="color:#dc322f">Eq</span>, <span style="color:#dc322f">Ord</span>, <span style="color:#dc322f">Enum</span>)
 
 <span style="color:#268bd2">type</span> <span style="color:#dc322f">Outcome</span> d <span style="color:#719e07">=</span> <span style="color:#dc322f">Either</span> d <span style="color:#dc322f">Movement</span>
-</code></pre></div><p>This is how we will encode the output of node: every node has to produce a value of type <code>Outcome d</code>, and we will just check whether it is a movement or an output value that was just produced. Thus, the type of what produces an outcome (which I'm going to call <code>Rule</code> because it is the name that makes the most sense to me right now) is pretty clear:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">type</span> <span style="color:#dc322f">Rule</span> m d <span style="color:#719e07">=</span> m (<span style="color:#dc322f">Outcome</span> d)
-</code></pre></div><p>Where we'll have a constraint in which we require <code>m</code> to be a <code>Monad</code> instance. This type, although pretty simple, will give us all the flexibility we need: <code>Tree (Rule m d)</code> has monadic actions at each node; when we run the monadic action, we'll get an <code>Outcome d</code>, which we can check for what to do next.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>This is how we will encode the output of node: every node has to produce a value of type <code>Outcome d</code>, and we will just check whether it is a movement or an output value that was just produced. Thus, the type of what produces an outcome (which I'm going to call <code>Rule</code> because it is the name that makes the most sense to me right now) is pretty clear:</p>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">type</span> <span style="color:#dc322f">Rule</span> m d <span style="color:#719e07">=</span> m (<span style="color:#dc322f">Outcome</span> d)
+</code></pre></td></tr></table>
+</div>
+</div><p>Where we'll have a constraint in which we require <code>m</code> to be a <code>Monad</code> instance. This type, although pretty simple, will give us all the flexibility we need: <code>Tree (Rule m d)</code> has monadic actions at each node; when we run the monadic action, we'll get an <code>Outcome d</code>, which we can check for what to do next.</p>
 <p>With these types, the function we need will have a signature that looks like this:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">Monad</span> m) <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d) <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Outcome</span> d)
-</code></pre></div><p>Almost. You could reach a <code>Failure</code> node, and thus there's no way you could possibly produce an <code>Outcome d</code>, which means you'd be forced to error in some other way. Since using the <code>Monad</code> instance's <code>fail</code> function is considered evil, I just opted for this:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">MonadCatch</span> m) <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d) <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Outcome</span> d)
-</code></pre></div><p>There is yet another issue with this function signature: if the <code>Rule</code> throws an exception, then the entire process will interrupt; and we won't be able to distinguish between an error in the execution and an error in the rule (at least not <em>a priori</em>). Thus, I introduced yet another abstraction, which is that of an <code>Execution</code>:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">newtype</span> <span style="color:#dc322f">Execution</span> d <span style="color:#719e07">=</span> <span style="color:#dc322f">Execution</span>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">Monad</span> m) <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d) <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Outcome</span> d)
+</code></pre></td></tr></table>
+</div>
+</div><p>Almost. You could reach a <code>Failure</code> node, and thus there's no way you could possibly produce an <code>Outcome d</code>, which means you'd be forced to error in some other way. Since using the <code>Monad</code> instance's <code>fail</code> function is considered evil, I just opted for this:</p>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">MonadCatch</span> m) <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d) <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Outcome</span> d)
+</code></pre></td></tr></table>
+</div>
+</div><p>There is yet another issue with this function signature: if the <code>Rule</code> throws an exception, then the entire process will interrupt; and we won't be able to distinguish between an error in the execution and an error in the rule (at least not <em>a priori</em>). Thus, I introduced yet another abstraction, which is that of an <code>Execution</code>:</p>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">27
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">newtype</span> <span style="color:#dc322f">Execution</span> d <span style="color:#719e07">=</span> <span style="color:#dc322f">Execution</span>
   { _result <span style="color:#719e07">::</span> <span style="color:#dc322f">Either</span> <span style="color:#dc322f">SomeException</span> (<span style="color:#dc322f">Outcome</span> d)
   } <span style="color:#268bd2">deriving</span> (<span style="color:#dc322f">Show</span>)
 
@@ -147,25 +244,85 @@
       <span style="color:#268bd2">case</span> outcome <span style="color:#268bd2">of</span>
         <span style="color:#dc322f">Left</span> decision <span style="color:#719e07">-&gt;</span> d decision
         <span style="color:#dc322f">Right</span> move <span style="color:#719e07">-&gt;</span> m move
-</code></pre></div><p>Indeed, an <code>Execution</code> is just the result from running a Rule. Furthermore, an <code>execute</code> with a signature as above won't be able to provide any debug information: we have no knowledge about the path that was taken in the tree. The easy way to solve this is to just output a <code>Tree</code>:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">MonadCatch</span> m)
+</code></pre></td></tr></table>
+</div>
+</div><p>Indeed, an <code>Execution</code> is just the result from running a Rule. Furthermore, an <code>execute</code> with a signature as above won't be able to provide any debug information: we have no knowledge about the path that was taken in the tree. The easy way to solve this is to just output a <code>Tree</code>:</p>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">MonadCatch</span> m)
   <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d)
   <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Execution</span> d))
-</code></pre></div><p>The question now is which recursion scheme to use. At first I thought it would be a catamorphism, however, it simply isn't because the process we want to do is &ldquo;first run the rule, then make a decision on which way to go&rdquo;, which is different from &ldquo;run the two sides&rsquo; rules, then decide what to do with the current rule&rdquo;.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The question now is which recursion scheme to use. At first I thought it would be a catamorphism, however, it simply isn't because the process we want to do is &ldquo;first run the rule, then make a decision on which way to go&rdquo;, which is different from &ldquo;run the two sides&rsquo; rules, then decide what to do with the current rule&rdquo;.</p>
 <p>After a lot of time spent looking at the type signatures, it became clear that it is an anamorphism. The way I like to think about it is that, at every step, you have to unfold a new <code>Tree</code>; this requires you to provide the <code>value</code> for the <code>Node</code>, and its two sides. The <code>value</code> corresponds to the <code>Execution d</code>, and the two sides depend on the rule execution: if the rule said to finish, then both sides are <code>Failure</code>, if it said to go <code>L</code>, then just the <code>right</code> side is <code>Failure</code> while the <code>left</code> side holds the next <code>Rule m d</code> to execute (the other case is symmetric). Thus, we need a transformation of type:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">go</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">MonadCatch</span> m)
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">go</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">MonadCatch</span> m)
   <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d)
   <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">TreeF</span> (<span style="color:#dc322f">Execution</span> d) (<span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d)))
-</code></pre></div><p>Coding this is a fairly simple endeavor, as long as you have a monadic anamorphism. This is not as simple as it looks because you have to pick some sequencing for the effects of the <code>Monad</code>. There is an <a href="https://github.com/ekmett/recursion-schemes/issues/3">old closed bug</a> in the <code>recursion-schemes</code> GitHub repository with a discussion on the complexities. I just used the <code>anaM</code> definition from the first comment:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">anaM</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">Monad</span> m, <span style="color:#dc322f">Corecursive</span> b, <span style="color:#dc322f">Traversable</span> (<span style="color:#dc322f">Base</span> b))
+</code></pre></td></tr></table>
+</div>
+</div><p>Coding this is a fairly simple endeavor, as long as you have a monadic anamorphism. This is not as simple as it looks because you have to pick some sequencing for the effects of the <code>Monad</code>. There is an <a href="https://github.com/ekmett/recursion-schemes/issues/3">old closed bug</a> in the <code>recursion-schemes</code> GitHub repository with a discussion on the complexities. I just used the <code>anaM</code> definition from the first comment:</p>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">anaM</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">Monad</span> m, <span style="color:#dc322f">Corecursive</span> b, <span style="color:#dc322f">Traversable</span> (<span style="color:#dc322f">Base</span> b))
   <span style="color:#719e07">=&gt;</span> (a <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Base</span> b a))
   <span style="color:#719e07">-&gt;</span> a
   <span style="color:#719e07">-&gt;</span> m b
 <span style="color:#268bd2">anaM</span> coalg <span style="color:#719e07">=</span> recurse
   <span style="color:#268bd2">where</span>
     recurse <span style="color:#719e07">=</span> (return <span style="color:#719e07">.</span> embed) <span style="color:#719e07">&lt;=&lt;</span> mapM recurse <span style="color:#719e07">&lt;=&lt;</span> coalg
-</code></pre></div><p>With some additional foo, it turns out to be really easy to write this function down:</p>
-<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">deadendF</span> <span style="color:#719e07">::</span>a <span style="color:#719e07">-&gt;</span> b <span style="color:#719e07">-&gt;</span> <span style="color:#dc322f">TreeF</span> a b
+</code></pre></td></tr></table>
+</div>
+</div><p>With some additional foo, it turns out to be really easy to write this function down:</p>
+<div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">deadendF</span> <span style="color:#719e07">::</span>a <span style="color:#719e07">-&gt;</span> b <span style="color:#719e07">-&gt;</span> <span style="color:#dc322f">TreeF</span> a b
 <span style="color:#268bd2">deadendF</span> a b <span style="color:#719e07">=</span> <span style="color:#dc322f">NodeF</span> a b b
 
 <span style="color:#268bd2">conditionalF</span> <span style="color:#719e07">::</span> a <span style="color:#719e07">-&gt;</span> <span style="color:#dc322f">Tree</span> b <span style="color:#719e07">-&gt;</span> <span style="color:#dc322f">Movement</span> <span style="color:#719e07">-&gt;</span> <span style="color:#dc322f">TreeF</span> a (<span style="color:#dc322f">Tree</span> b)
@@ -188,13 +345,21 @@
       return <span style="color:#719e07">$</span> destruct endpoint endpoint
         (<span style="color:#268bd2">\</span>move <span style="color:#719e07">-&gt;</span> conditionalF execution (branch move tree) move)
         execution
-</code></pre></div><p>This will be all for today. For the next post in the series, I'll cover how to summarize the execution trees in a meaningful way, so that we can have some statistics on the executions.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>This will be all for today. For the next post in the series, I'll cover how to summarize the execution trees in a meaningful way, so that we can have some statistics on the executions.</p>
 
+      
+      <div class="related">
+</div>
       
     </div>
     
   </div>
 </section>
+
+    <script src="/js/copycode.js"></script>
+
 
 
 <script type="text/x-mathjax-config">
@@ -214,4 +379,16 @@ MathJax.Hub.Config({
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+    
+  </div>
+</section>
+
+
+
+</body>
+</html>
 
