@@ -18,7 +18,7 @@
       
       <guid>https://julian.bayardo.info/understanding-modulo-bias/</guid>
       <description>It is often said that this code:
-unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&#39;m going to try and explore this topic in a more formal fashion than I have seen so far.
+unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&amp;rsquo;m going to try and explore this topic in a more formal fashion than I have seen so far.
 The reason why it is bad is pretty elementary and easy to understand: imagine you have a random generator that outputs values between \(0\) and \(9\) (i.</description>
     </item>
     

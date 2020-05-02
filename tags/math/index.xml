@@ -18,7 +18,7 @@
       
       <guid>https://julian.bayardo.info/understanding-modulo-bias/</guid>
       <description>It is often said that this code:
-unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&#39;m going to try and explore this topic in a more formal fashion than I have seen so far.
+unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&amp;rsquo;m going to try and explore this topic in a more formal fashion than I have seen so far.
 The reason why it is bad is pretty elementary and easy to understand: imagine you have a random generator that outputs values between \(0\) and \(9\) (i.</description>
     </item>
     
@@ -29,7 +29,7 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
       
       <guid>https://julian.bayardo.info/yet-another-proof-of-brookes-theorem/</guid>
       <description>A classical result from Graph theory is that given \(G\) an undirected graph:
-\chi(G) \leq \Delta(G) + 1  Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&#39;s Theorem.
+\chi(G) \leq \Delta(G) + 1  Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&amp;rsquo;s Theorem.
 The usual way to prove this result is to use the Greedy coloring algorithm: go through every node, and pick the lowest color not yet used by any of its neighbors.</description>
     </item>
     

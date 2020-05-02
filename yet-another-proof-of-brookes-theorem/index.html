@@ -8,7 +8,7 @@
 
 <meta property='og:title' content='Yet Another Proof of Brooke&#39;s Theorem - Julian through the Lens'>
 <meta property='og:description' content='A classical result from Graph theory is that given \(G\) an undirected graph:
-\chi(G) \leq \Delta(G) &#43; 1  Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&#39;s Theorem.
+\chi(G) \leq \Delta(G) &#43; 1  Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&rsquo;s Theorem.
 The usual way to prove this result is to use the Greedy coloring algorithm: go through every node, and pick the lowest color not yet used by any of its neighbors.'>
 <meta property='og:url' content='https://julian.bayardo.info/yet-another-proof-of-brookes-theorem/'>
 <meta property='og:site_name' content='Julian through the Lens'>
@@ -109,7 +109,7 @@ The usual way to prove this result is to use the Greedy coloring algorithm: go t
 <script type="math/tex; mode=display">
 \chi(G) \leq \Delta(G) + 1
 </script>
-<p>Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke's Theorem.</p>
+<p>Where \(\chi(G)\) is the minimum number of colors required to paint the nodes of \(G\) with the usual restriction that no node has the same color as any of its neighbors, and \(\Delta(G) = max_{v \in V(G)}(dg(v))\), that is, the maximum degree. This result is known as Brooke&rsquo;s Theorem.</p>
 <p>The usual way to prove this result is to use the Greedy coloring algorithm: go through every node, and pick the lowest color not yet used by any of its neighbors. It is reasonably straightforward to prove the result with this idea: every node has at most \(\Delta(G)\) neighbors, hence the highest color you could possibly pick is \(\Delta(G) + 1\). This is the result you will probably find in most books and courses in graph theory. I was talking with some friends the other day, when this topic came up and we thought of this proof.</p>
 <p>For completeness, I will include a few definitions here:</p>
 <p><strong>Definition:</strong> The neighborhood of a node \(v \in V(G)\) is</p>
@@ -125,12 +125,12 @@ Assuming that the above statement is true, notice that \(\#N[v] = dg(v) + 1\), h
 <script type="math/tex; mode=display">
 \chi(G) = \#f(N[v]) \leq dg(v) + 1 \leq \Delta(G) + 1
 </script>
-<p>Which is precisely Brooke's theorem. So, if we can find a way to prove that \(\exists v \in V(G) : \#f(N[v]) = \chi(G)\), we're done. Let's put up the formal statement:</p>
+<p>Which is precisely Brooke&rsquo;s theorem. So, if we can find a way to prove that \(\exists v \in V(G) : \#f(N[v]) = \chi(G)\), we&rsquo;re done. Let&rsquo;s put up the formal statement:</p>
 <p><strong>Lemma:</strong> Given \(G\) an undirected graph, \(f\) a minimal coloring for \(G\), \(\exists v \in V(G) : \#f(N[v]) = \chi(G)\).</p>
 <p><strong>Proof:</strong>
-Suppose that \(\forall v \in V(G) : \#f(N[v]) \neq \chi(G)\). Clearly, \(\#f(N[v])\) can not be greater than \(\chi(G)\), for such an event would contradict \(f\) being a minimal coloring for \(G\). Hence, we have that every closed neighborhood of \(G\) has \(\#f(N[V]) \lt \chi(G)\). Let \(C_k = \{v \in V(G) : f(v) = k\}\), where \(k \in [\chi(G)]\); these \(C_k\) are the nodes colored with color \(k\). Just for succinctness, let's call \(C = C_{\chi(G)}\) (the nodes colored with the last color).</p>
+Suppose that \(\forall v \in V(G) : \#f(N[v]) \neq \chi(G)\). Clearly, \(\#f(N[v])\) can not be greater than \(\chi(G)\), for such an event would contradict \(f\) being a minimal coloring for \(G\). Hence, we have that every closed neighborhood of \(G\) has \(\#f(N[V]) \lt \chi(G)\). Let \(C_k = \{v \in V(G) : f(v) = k\}\), where \(k \in [\chi(G)]\); these \(C_k\) are the nodes colored with color \(k\). Just for succinctness, let&rsquo;s call \(C = C_{\chi(G)}\) (the nodes colored with the last color).</p>
 <p>Given any node \(w \in C\), we can change its color to a different, lower color not used in its neighborhood, because \(\#f(N[w]) \lt \chi(G)\) (this means that not every color is used in the neighborhood, hence we can at least take \(\chi(G) - 1\)). Call \(c_w\) this lower color we chose. Notice that there are no conflicts with any neighbors by construction.</p>
-<p>Let's define \(g : V \to [\chi(G) - 1]\) as</p>
+<p>Let&rsquo;s define \(g : V \to [\chi(G) - 1]\) as</p>
 <script type="math/tex; mode=display">
 g(v) =
 	\begin{cases}
@@ -138,11 +138,11 @@ g(v) =
 		f(v) & \text{otherwise}
 	\end{cases}
 </script>
-<p>Let's see that this is a coloring: given any \(e = (v, w) \in E(G)\), we want to check that \(g(v) \neq g(w)\). Suppose that \(g(v) = g(w)\), then there's three possible cases:</p>
+<p>Let&rsquo;s see that this is a coloring: given any \(e = (v, w) \in E(G)\), we want to check that \(g(v) \neq g(w)\). Suppose that \(g(v) = g(w)\), then there&rsquo;s three possible cases:</p>
 <ol>
 <li>\(v \in C \wedge w \in C\): \(C\) was the set of nodes colored with \(\chi(G)\) according to \(f\), which was actually a coloring by hypothesis. Hence, this can not happen, as it would contradict \(f\) being a proper coloring.</li>
 <li>\(v \not \in C \wedge w \not \in C\): we have that \(g(v) = f(v) \wedge g(w) = f(w)\), thus \(f(v) = f(w)\), this would contradict the hypothesis that \(f\) is a proper coloring.</li>
-<li>\(v \in C \wedge w \not \in C\): by definition, we have that \(w \in N[v]\), and we picked \(g(v)\) such that it wouldn't conflict with any of its neighbors. Thus, this can't happen either.</li>
+<li>\(v \in C \wedge w \not \in C\): by definition, we have that \(w \in N[v]\), and we picked \(g(v)\) such that it wouldn&rsquo;t conflict with any of its neighbors. Thus, this can&rsquo;t happen either.</li>
 </ol>
 <p>Finally, we have proven that \(g\) is a coloring!. However, this means we have built a coloring of \(G\) such that it uses less colors than \(\chi(G)\). This is absurd, and thus \(f\) must not have been a minimal coloring.</p>
 

@@ -8,7 +8,7 @@
 
 <meta property='og:title' content='Understanding Modulo Bias - Julian through the Lens'>
 <meta property='og:description' content='It is often said that this code:
-unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&#39;m going to try and explore this topic in a more formal fashion than I have seen so far.
+unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&rsquo;m going to try and explore this topic in a more formal fashion than I have seen so far.
 The reason why it is bad is pretty elementary and easy to understand: imagine you have a random generator that outputs values between \(0\) and \(9\) (i.'>
 <meta property='og:url' content='https://julian.bayardo.info/understanding-modulo-bias/'>
 <meta property='og:site_name' content='Julian through the Lens'>
@@ -108,7 +108,7 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
       <p>It is often said that this code:</p>
 <pre><code>unsigned int randomNumber = rand() % k;
 </code></pre>
-<p>is a bad idea, at least if you are expecting a uniform distribution. I'm going to try and explore this topic in a more formal fashion than I have seen so far.</p>
+<p>is a bad idea, at least if you are expecting a uniform distribution. I&rsquo;m going to try and explore this topic in a more formal fashion than I have seen so far.</p>
 <p>The reason why it is bad is pretty elementary and easy to understand: imagine you have a random generator that outputs values between \(0\) and \(9\) (i.e. <code>RAND_MAX</code> is \(10\)), and you wanted values between \(0\) and \(2\) (so you would set \(k = 3\) ). Then, we have the following mapping:</p>
 <table>
     <tr>
@@ -220,7 +220,7 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
   drawModuloBiasPlot();
 
 </script>
-<p>Effectively, the effect of the parameter \(k\) becomes more pronounced when the value of \(M \% k\) gets bigger; until it gets too big (i.e. \(k = M - 1\)), and then it is almost as if you didn't have the problem. More formally, we can analyze this by setting \(X\) to be a discrete random variable such that \(R_X = \{0, &hellip;, M-1\}\), with \(M-1 \in \mathbb{N}\) being the highest achievable number for the random generator and \(P(X = i) = \frac{1}{M}\).</p>
+<p>Effectively, the effect of the parameter \(k\) becomes more pronounced when the value of \(M \% k\) gets bigger; until it gets too big (i.e. \(k = M - 1\)), and then it is almost as if you didn&rsquo;t have the problem. More formally, we can analyze this by setting \(X\) to be a discrete random variable such that \(R_X = \{0, &hellip;, M-1\}\), with \(M-1 \in \mathbb{N}\) being the highest achievable number for the random generator and \(P(X = i) = \frac{1}{M}\).</p>
 <p>Let \(Y = X \% k\). What we want is to find out what the probability distribution function of \(Y\) is, since that will give us a way to properly understand what is happening. First of all, notice that \(R_Y = \{0, &hellip;, k-1\}\). Hence, the probability:</p>
 <script type="math/tex; mode=display">
 P(Y = i) = P(\cup_{j \in J_i} (X = j)) = \sum_{j \in J_i} P(X = j) = \frac{\#J_i}{M}
@@ -326,7 +326,7 @@ P(Y = i) = \frac{\lfloor \frac{M - 1 - i}{k} \rfloor + 1}{M}
   drawModuloDistributionPlot();
 
 </script>
-<p>If you look at different values of \(M\), it will become clear that \(\text{KL}(Z||Y)\) only reaches 0 when \(k\) evenly divides \(M\); and thus some values of \(M\) don't ever get a point that reaches \(0\); specifically, these are the prime numbers.</p>
+<p>If you look at different values of \(M\), it will become clear that \(\text{KL}(Z||Y)\) only reaches 0 when \(k\) evenly divides \(M\); and thus some values of \(M\) don&rsquo;t ever get a point that reaches \(0\); specifically, these are the prime numbers.</p>
 <p>Furthermore, the space between the zeros becomes bigger and bigger as \(M\) increases. This is basically because even divisors of \(M\) are more spaced out as they get larger; this is easy to see by looking at the prime decomposition of \(M = \prod_{i=1}^b p_i^{r_i} \): every even divisor can only look just like the decomposition, just with a lesser or equal value for each \(r_i\), which means that increases in value are multiplicative!.</p>
 <p>The last key to understand this is the parabolas. Why do we have an inverted parabola between each even divisor?. That is simply because of how modulo works!:</p>
 <ul>
@@ -363,7 +363,7 @@ do {
 } while (randomNumber &gt;= threshold)
 randomNumber = randomNumber % k;
 </code></pre>
-<p>We don't really need to do anything to prove that this is correct: it is clear that the first four lines sample a number from the range \(\{0, &hellip;, \lfloor \frac{M}{k} \rfloor k - 1\}\) uniformly at random (from the proof of the previous scheme), and then using modulo on that changes it to a uniform distribution with the desired range (due to the first scheme's proof).</p>
+<p>We don&rsquo;t really need to do anything to prove that this is correct: it is clear that the first four lines sample a number from the range \(\{0, &hellip;, \lfloor \frac{M}{k} \rfloor k - 1\}\) uniformly at random (from the proof of the previous scheme), and then using modulo on that changes it to a uniform distribution with the desired range (due to the first scheme&rsquo;s proof).</p>
 <p>The only interesting change here is the number of calls to <code>rand()</code>. Now, the probability that a number is in the desired range for the loop is \( \frac{M - (M \% k)}{M} = 1 - \frac{M \% k}{M}\), and thus the number of iterations is \(N \sim \text{Geometric}(1 - \frac{M \% k}{M})\). We can now look at the expected number of iterations for different values of \(k\) and \(M\):</p>
 <div style="display:flex;margin:auto;">
   <div style="flex:0 0 40%;margin-top:50pt;">

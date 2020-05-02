@@ -106,11 +106,11 @@
       <p>A long time ago, I was in touch with a production system whose purpose was to run a piece of data through a decision tree. At every step, the output could be Good, Bad, Move Left, or Move Right; there were no leaves, since at the end you were supposed to always have returned either Good or Bad (this means it would be an error for you to get there).</p>
 <p>The nodes in the decision tree could be pretty much whatever: most of them were expert rules for determining certain cases and automatically marking them as good or bad, others were carefully crafted models. Some of these nodes also required access to internal APIs in order to fetch more data concerning what you were processing.</p>
 <p>It operated on an environment that changed frequently, which meant that the patterns the tree was looking for had to be constantly adapted, and thus it was a requirement of the system to hotswap the nodes&rsquo; code.</p>
-<p>The system was unable to do hotswapping, for whatever reasons that may be (I'm no expert in Java, but it seems there are several ways to do so). This led someone to create their own scripting language.</p>
+<p>The system was unable to do hotswapping, for whatever reasons that may be (I&rsquo;m no expert in Java, but it seems there are several ways to do so). This led someone to create their own scripting language.</p>
 <p>The language itself was pretty bad, but what was good about it is that it was really nicely integrated: they had also built version control on top of the nodes&rsquo; code, and deployment was reasonably smooth if you were working with these sort of nodes.</p>
-<p>The problem came when you wanted to do something with the nodes that was not supported within the scripting language, such as accessing APIs. In these cases, you had to go into each server that had the code in it, and replace the compiled Java classes with your new node's code, to then restart the server, causing it to detect your new code. Suffice it to say, this was a pain, and of course very much error prone.</p>
-<p>A few days ago, I was running through <a href="https://twitter.com/importantshock">Patrick Thomson</a>&lsquo;s <a href="http://blog.sumtypeofway.com/an-introduction-to-recursion-schemes/">Introduction to Recursion Schemes</a> and this problem came to mind again. I thought it might be a good exercise in learning recursion schemes; and thus here we are. Before we start, you may want to go through at least the first one or two posts in Patrick's tutorials. Also, I'll be using Edward Kmett's <a href="https://hackage.haskell.org/package/recursion-schemes">recursion-schemes</a> throughout, along with several language extensions and what not; you can see the finished code <a href="https://github.com/jbayardo/rule-engine">in my GitHub repository</a>.</p>
-<p>To start with, we'll have our Tree:</p>
+<p>The problem came when you wanted to do something with the nodes that was not supported within the scripting language, such as accessing APIs. In these cases, you had to go into each server that had the code in it, and replace the compiled Java classes with your new node&rsquo;s code, to then restart the server, causing it to detect your new code. Suffice it to say, this was a pain, and of course very much error prone.</p>
+<p>A few days ago, I was running through <a href="https://twitter.com/importantshock">Patrick Thomson</a>&lsquo;s <a href="http://blog.sumtypeofway.com/an-introduction-to-recursion-schemes/">Introduction to Recursion Schemes</a> and this problem came to mind again. I thought it might be a good exercise in learning recursion schemes; and thus here we are. Before we start, you may want to go through at least the first one or two posts in Patrick&rsquo;s tutorials. Also, I&rsquo;ll be using Edward Kmett&rsquo;s <a href="https://hackage.haskell.org/package/recursion-schemes">recursion-schemes</a> throughout, along with several language extensions and what not; you can see the finished code <a href="https://github.com/jbayardo/rule-engine">in my GitHub repository</a>.</p>
+<p>To start with, we&rsquo;ll have our Tree:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
@@ -138,7 +138,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>Observation:</strong> this type allows you to write trees that never end. We have no way to brace against this in the type system (that I know of), but you can definitely ask for the <code>left</code> and <code>right</code> to be strict, which would mean any such program would hang at the moment you try to make such a value, I think.</p>
-<p>This <code>makeBaseFunctor</code> call ensures that we get the additional <code>TreeF</code> type with the &ldquo;continuation holes&rdquo; for the type. And then we'll have two crucial types:</p>
+<p>This <code>makeBaseFunctor</code> call ensures that we get the additional <code>TreeF</code> type with the &ldquo;continuation holes&rdquo; for the type. And then we&rsquo;ll have two crucial types:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
@@ -157,7 +157,7 @@
 <span style="color:#268bd2">type</span> <span style="color:#dc322f">Outcome</span> d <span style="color:#719e07">=</span> <span style="color:#dc322f">Either</span> d <span style="color:#dc322f">Movement</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>This is how we will encode the output of node: every node has to produce a value of type <code>Outcome d</code>, and we will just check whether it is a movement or an output value that was just produced. Thus, the type of what produces an outcome (which I'm going to call <code>Rule</code> because it is the name that makes the most sense to me right now) is pretty clear:</p>
+</div><p>This is how we will encode the output of node: every node has to produce a value of type <code>Outcome d</code>, and we will just check whether it is a movement or an output value that was just produced. Thus, the type of what produces an outcome (which I&rsquo;m going to call <code>Rule</code> because it is the name that makes the most sense to me right now) is pretty clear:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
@@ -166,7 +166,7 @@
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">type</span> <span style="color:#dc322f">Rule</span> m d <span style="color:#719e07">=</span> m (<span style="color:#dc322f">Outcome</span> d)
 </code></pre></td></tr></table>
 </div>
-</div><p>Where we'll have a constraint in which we require <code>m</code> to be a <code>Monad</code> instance. This type, although pretty simple, will give us all the flexibility we need: <code>Tree (Rule m d)</code> has monadic actions at each node; when we run the monadic action, we'll get an <code>Outcome d</code>, which we can check for what to do next.</p>
+</div><p>Where we&rsquo;ll have a constraint in which we require <code>m</code> to be a <code>Monad</code> instance. This type, although pretty simple, will give us all the flexibility we need: <code>Tree (Rule m d)</code> has monadic actions at each node; when we run the monadic action, we&rsquo;ll get an <code>Outcome d</code>, which we can check for what to do next.</p>
 <p>With these types, the function we need will have a signature that looks like this:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -176,7 +176,7 @@
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">Monad</span> m) <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d) <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Outcome</span> d)
 </code></pre></td></tr></table>
 </div>
-</div><p>Almost. You could reach a <code>Failure</code> node, and thus there's no way you could possibly produce an <code>Outcome d</code>, which means you'd be forced to error in some other way. Since using the <code>Monad</code> instance's <code>fail</code> function is considered evil, I just opted for this:</p>
+</div><p>Almost. You could reach a <code>Failure</code> node, and thus there&rsquo;s no way you could possibly produce an <code>Outcome d</code>, which means you&rsquo;d be forced to error in some other way. Since using the <code>Monad</code> instance&rsquo;s <code>fail</code> function is considered evil, I just opted for this:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
@@ -185,7 +185,7 @@
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#268bd2">execute</span> <span style="color:#719e07">::</span> (<span style="color:#dc322f">MonadCatch</span> m) <span style="color:#719e07">=&gt;</span> <span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Rule</span> m d) <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Outcome</span> d)
 </code></pre></td></tr></table>
 </div>
-</div><p>There is yet another issue with this function signature: if the <code>Rule</code> throws an exception, then the entire process will interrupt; and we won't be able to distinguish between an error in the execution and an error in the rule (at least not <em>a priori</em>). Thus, I introduced yet another abstraction, which is that of an <code>Execution</code>:</p>
+</div><p>There is yet another issue with this function signature: if the <code>Rule</code> throws an exception, then the entire process will interrupt; and we won&rsquo;t be able to distinguish between an error in the execution and an error in the rule (at least not <em>a priori</em>). Thus, I introduced yet another abstraction, which is that of an <code>Execution</code>:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050"> 1
@@ -246,7 +246,7 @@
         <span style="color:#dc322f">Right</span> move <span style="color:#719e07">-&gt;</span> m move
 </code></pre></td></tr></table>
 </div>
-</div><p>Indeed, an <code>Execution</code> is just the result from running a Rule. Furthermore, an <code>execute</code> with a signature as above won't be able to provide any debug information: we have no knowledge about the path that was taken in the tree. The easy way to solve this is to just output a <code>Tree</code>:</p>
+</div><p>Indeed, an <code>Execution</code> is just the result from running a Rule. Furthermore, an <code>execute</code> with a signature as above won&rsquo;t be able to provide any debug information: we have no knowledge about the path that was taken in the tree. The easy way to solve this is to just output a <code>Tree</code>:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1
@@ -259,7 +259,7 @@
   <span style="color:#719e07">-&gt;</span> m (<span style="color:#dc322f">Tree</span> (<span style="color:#dc322f">Execution</span> d))
 </code></pre></td></tr></table>
 </div>
-</div><p>The question now is which recursion scheme to use. At first I thought it would be a catamorphism, however, it simply isn't because the process we want to do is &ldquo;first run the rule, then make a decision on which way to go&rdquo;, which is different from &ldquo;run the two sides&rsquo; rules, then decide what to do with the current rule&rdquo;.</p>
+</div><p>The question now is which recursion scheme to use. At first I thought it would be a catamorphism, however, it simply isn&rsquo;t because the process we want to do is &ldquo;first run the rule, then make a decision on which way to go&rdquo;, which is different from &ldquo;run the two sides&rsquo; rules, then decide what to do with the current rule&rdquo;.</p>
 <p>After a lot of time spent looking at the type signatures, it became clear that it is an anamorphism. The way I like to think about it is that, at every step, you have to unfold a new <code>Tree</code>; this requires you to provide the <code>value</code> for the <code>Node</code>, and its two sides. The <code>value</code> corresponds to the <code>Execution d</code>, and the two sides depend on the rule execution: if the rule said to finish, then both sides are <code>Failure</code>, if it said to go <code>L</code>, then just the <code>right</code> side is <code>Failure</code> while the <code>left</code> side holds the next <code>Rule m d</code> to execute (the other case is symmetric). Thus, we need a transformation of type:</p>
 <div class="highlight"><div style="color:#93a1a1;background-color:#002b36;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -347,7 +347,7 @@
         execution
 </code></pre></td></tr></table>
 </div>
-</div><p>This will be all for today. For the next post in the series, I'll cover how to summarize the execution trees in a meaningful way, so that we can have some statistics on the executions.</p>
+</div><p>This will be all for today. For the next post in the series, I&rsquo;ll cover how to summarize the execution trees in a meaningful way, so that we can have some statistics on the executions.</p>
 
       
       <div class="related">
