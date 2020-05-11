@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en" >
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<title>NCH is roto-translation invariant | Julian through the Lens</title>
-
-<meta property='og:title' content='NCH is roto-translation invariant - Julian through the Lens'>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>NCH is roto-translation invariant | Julian through the Lens</title>
+    
+    <meta property='og:title' content='NCH is roto-translation invariant - Julian through the Lens'>
 <meta property='og:description' content='Introduction I have recently started my thesis on 3D surface reconstruction. One way to do so is to define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. NCH is a method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.'>
 <meta property='og:url' content='https://julian.bayardo.info/nch-roto-translation-invariant/'>
 <meta property='og:site_name' content='Julian through the Lens'>
-<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/fdbc036a46f3c0903c7e39459db599c0?s=256'><meta property='article:section' content=''><meta property='article:tag' content='thesis'><meta property='article:tag' content='non-convex hull'><meta property='article:tag' content='linear-algebra'><meta property='article:published_time' content='2018-08-20T19:23:28-03:00'/><meta property='article:modified_time' content='2018-08-20T19:23:28-03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@'><meta name='twitter:creator' content='@'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/fdbc036a46f3c0903c7e39459db599c0?s=256'><meta property='article:section' content=''><meta property='article:tag' content='thesis'><meta property='article:tag' content='non-convex hull'><meta property='article:tag' content='linear-algebra'><meta property='article:published_time' content='2018-08-20T19:23:28-03:00'/><meta property='article:modified_time' content='2018-08-20T19:23:28-03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@BayardoJulian'><meta name='twitter:creator' content='@BayardoJulian'>
 
+    
+    <link href="https://julian.bayardo.info/index.xml" rel="alternate" type="application/rss+xml" title="Julian through the Lens" />
+    
+    <link rel="stylesheet" href="/css/style.css" /><link rel='stylesheet' href='https://julian.bayardo.info/css/own.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="canonical" href="https://julian.bayardo.info/nch-roto-translation-invariant/">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-<link href="https://julian.bayardo.info/index.xml" rel="alternate" type="application/rss+xml" title="Julian through the Lens" />
+    
 
-<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="https://julian.bayardo.info/nch-roto-translation-invariant/">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
 <section class="section">
   <div class="container">
@@ -34,58 +39,62 @@
         </a>
       </div>
       <div class="nav-right">
-        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="rss" href='/index.xml'
-            target='_blank' rel='noopener'>
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="rss"
+            href='/index.xml' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M4 11a9 9 0 0 1 9 9"></path>
+  <path d="M4 4a16 16 0 0 1 16 16"></path>
+  <circle cx="5" cy="19" r="1"></circle>
+</svg>
+</i>
             </span>
-          </a><a class="level-item" aria-label="github" href='https://github.com/jbayardo'
-            target='_blank' rel='noopener'>
+          </a><a class="level-item" aria-label="github"
+            href='https://github.com/jbayardo' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path
+    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg>
+</i>
             </span>
-          </a><a class="level-item" aria-label="email" href='mailto:julian@bayardo.info'
-            target='_blank' rel='noopener'>
+          </a><a class="level-item" aria-label="email"
+            href='mailto:julian@bayardo.info' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-    <polyline points="22,6 12,13 2,6"/>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+  <polyline points="22,6 12,13 2,6" />
+</svg>
+</i>
             </span>
-          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/jbayardo'
-            target='_blank' rel='noopener'>
+          </a><a class="level-item" aria-label="linkedin"
+            href='https://linkedin.com/in/jbayardo' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path stroke-width="1.8"
+    d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z" />
+</svg>
+</i>
             </span>
           </a></nav>
       </div>
     </nav>
 
-    <nav class="nav">
-      
-
-      
-    </nav>
+    
 
   </div>
   <script src="/js/navicon-shift.js"></script>
 </section>
 <section class="section">
-  <div class="container">
+  <article class="container">
     <div class="subtitle tags is-6 is-pulled-right">
       
       
@@ -104,6 +113,7 @@
     <h2 class="subtitle is-6">August 20, 2018</h2>
     <h1 class="title">NCH is roto-translation invariant</h1>
     
+
     <div class="content">
       <h1 id="introduction">Introduction</h1>
 <p>I have recently started my thesis on 3D surface reconstruction. One way to do so is to define a surface as the zero level set of a function $f : \mathbb{R}^3 \to \mathbb{R}$, and then find some way to build this function out of a set of points $\mathcal{P} \subset \mathbb{R}^3$. <a href="http://mesh.brown.edu/nch/Taubin-sga2013-brief.pdf">NCH</a> is a method that allows you to define such a function starting from a point cloud along with their normals, which tell you which way is the inside of the surface.</p>
@@ -155,50 +165,74 @@ f_i&rsquo;(Qx) &amp; = n_i'^t (Qx - p_i&rsquo;) - \rho_i&rsquo; || Qx - p_i&rsqu
 <p>Which implies that the moved point $x + c$ is part of the surface. This of course works both ways, because of the equalities we established above.</p>
 
       
-      <div class="related">
-
-<h3>Similar articles:</h3>
-<ul>
-	
-	<li><a href="/matrix-trace-characterization/">Characterizing the trace of a matrix</a></li>
-	
-</ul>
-</div>
-      
     </div>
     
+  </article>
+</section>
+
+<section class="section" style="padding: 0px;">
+    <div class="container has-text-centered">
+        <hr />
+
+        For comments and discussion, feel free to reach out via <a href="mailto:julian@bayardo.info">email</a>
+        or <span class="twitter"></span><a href="https://twitter.com/search?q=https%3a%2f%2fjulian.bayardo.info%2fnch-roto-translation-invariant%2f" rel="author">Twitter</a>
+        </span>
+    </div>
+</section>
+<section class="section" style="padding-top: 0px;">
+  <div class="container">
+    <hr />
+
+    <p style="float: left;">&copy; Julian Bayardo Spadafora 2015-2020</p>
+
+    <div style="float: right;">
+      <a href="https://julian.bayardo.info/nch-roto-translation-invariant/#">Back to Top</a>
+    </div>
   </div>
 </section>
 
-
+<script>
+  
+  (function addHeadingLinks() {
+    var article = document.querySelector('div.content');
+    var headings = article.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(function (heading) {
+      if (heading.id) {
+        var link = document.createElement('a');
+        link.innerHTML = '\n\x3csvg xmlns=\x22http:\/\/www.w3.org\/2000\/svg\x22 width=\x2216\x22 height=\x2216\x22 viewBox=\x220 0 8 8\x22\x3e\n  \x3cpath\n    d=\x22M5.88.03c-.18.01-.36.03-.53.09-.27.1-.53.25-.75.47a.5.5 0 1 0 .69.69c.11-.11.24-.17.38-.22.35-.12.78-.07 1.06.22.39.39.39 1.04 0 1.44l-1.5 1.5c-.44.44-.8.48-1.06.47-.26-.01-.41-.13-.41-.13a.5.5 0 1 0-.5.88s.34.22.84.25c.5.03 1.2-.16 1.81-.78l1.5-1.5c.78-.78.78-2.04 0-2.81-.28-.28-.61-.45-.97-.53-.18-.04-.38-.04-.56-.03zm-2 2.31c-.5-.02-1.19.15-1.78.75l-1.5 1.5c-.78.78-.78 2.04 0 2.81.56.56 1.36.72 2.06.47.27-.1.53-.25.75-.47a.5.5 0 1 0-.69-.69c-.11.11-.24.17-.38.22-.35.12-.78.07-1.06-.22-.39-.39-.39-1.04 0-1.44l1.5-1.5c.4-.4.75-.45 1.03-.44.28.01.47.09.47.09a.5.5 0 1 0 .44-.88s-.34-.2-.84-.22z\x22 \/\x3e\n\x3c\/svg\x3e\n';
+        link.href = '#' + heading.id;
+        link.style.float = 'right';
+        link.style.borderBottom = '0';
+        heading.append(link);
+      }
+    });
+  })();
+</script>
 
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+           extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+  </script>
 
-<script type="text/javascript" async
+<script type="text/javascript" async="true" defer="true"
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+  </script>
 
-<section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-    
-  </div>
-</section>
+
+
+
 
 
 
 </body>
-</html>
 
+</html>

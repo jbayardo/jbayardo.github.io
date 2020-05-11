@@ -1,0 +1,30 @@
+figure {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+figure > figcaption {
+    text-align: center;
+}
+
+figure > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 0pt;
+    margin-bottom: 1em;
+}
+
+.read-more {
+    float: right;
+}
+
+div.highlight {
+    border-style: solid;
+    border-color: #002b36;
+    border-width: 1px;
+}

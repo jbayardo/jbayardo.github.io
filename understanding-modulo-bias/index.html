@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en" >
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<title>Understanding Modulo Bias | Julian through the Lens</title>
-
-<meta property='og:title' content='Understanding Modulo Bias - Julian through the Lens'>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Understanding Modulo Bias | Julian through the Lens</title>
+    
+    <meta property='og:title' content='Understanding Modulo Bias - Julian through the Lens'>
 <meta property='og:description' content='It is often said that this code:
 unsigned int randomNumber = rand() % k;  is a bad idea, at least if you are expecting a uniform distribution. I&rsquo;m going to try and explore this topic in a more formal fashion than I have seen so far.
 The reason why it is bad is pretty elementary and easy to understand: imagine you have a random generator that outputs values between \(0\) and \(9\) (i.'>
 <meta property='og:url' content='https://julian.bayardo.info/understanding-modulo-bias/'>
 <meta property='og:site_name' content='Julian through the Lens'>
-<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/fdbc036a46f3c0903c7e39459db599c0?s=256'><meta property='article:section' content=''><meta property='article:tag' content='math'><meta property='article:tag' content='probability'><meta property='article:published_time' content='2018-05-02T20:26:06-03:00'/><meta property='article:modified_time' content='2018-05-02T20:26:06-03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@'><meta name='twitter:creator' content='@'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/fdbc036a46f3c0903c7e39459db599c0?s=256'><meta property='article:section' content=''><meta property='article:tag' content='math'><meta property='article:tag' content='probability'><meta property='article:published_time' content='2018-05-02T20:26:06-03:00'/><meta property='article:modified_time' content='2018-05-02T20:26:06-03:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@BayardoJulian'><meta name='twitter:creator' content='@BayardoJulian'>
 
+    
+    <link href="https://julian.bayardo.info/index.xml" rel="alternate" type="application/rss+xml" title="Julian through the Lens" />
+    
+    <link rel="stylesheet" href="/css/style.css" /><link rel='stylesheet' href='https://julian.bayardo.info/css/own.css'><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="canonical" href="https://julian.bayardo.info/understanding-modulo-bias/">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-<link href="https://julian.bayardo.info/index.xml" rel="alternate" type="application/rss+xml" title="Julian through the Lens" />
+    
+    
+    <script type="text/javascript" src="https://cdn.plot.ly/plotly-1.36.1.min.js"></script>
+    
+    
 
-<link rel="stylesheet" href="/css/style.css"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="canonical" href="https://julian.bayardo.info/understanding-modulo-bias/">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
 <section class="section">
   <div class="container">
@@ -36,58 +45,62 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
         </a>
       </div>
       <div class="nav-right">
-        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="rss" href='/index.xml'
-            target='_blank' rel='noopener'>
+        <nav id="nav-items" class="nav-item level is-mobile"><a class="level-item" aria-label="rss"
+            href='/index.xml' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M4 11a9 9 0 0 1 9 9"></path>
+  <path d="M4 4a16 16 0 0 1 16 16"></path>
+  <circle cx="5" cy="19" r="1"></circle>
+</svg>
+</i>
             </span>
-          </a><a class="level-item" aria-label="github" href='https://github.com/jbayardo'
-            target='_blank' rel='noopener'>
+          </a><a class="level-item" aria-label="github"
+            href='https://github.com/jbayardo' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path
+    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg>
+</i>
             </span>
-          </a><a class="level-item" aria-label="email" href='mailto:julian@bayardo.info'
-            target='_blank' rel='noopener'>
+          </a><a class="level-item" aria-label="email"
+            href='mailto:julian@bayardo.info' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-    <polyline points="22,6 12,13 2,6"/>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+  <polyline points="22,6 12,13 2,6" />
+</svg>
+</i>
             </span>
-          </a><a class="level-item" aria-label="linkedin" href='https://linkedin.com/in/jbayardo'
-            target='_blank' rel='noopener'>
+          </a><a class="level-item" aria-label="linkedin"
+            href='https://linkedin.com/in/jbayardo' target='_blank'
+            rel='noopener'>
             <span class="icon">
-              <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-    
-    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
-    
-  </svg></i>
+              <i class>
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <path stroke-width="1.8"
+    d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z" />
+</svg>
+</i>
             </span>
           </a></nav>
       </div>
     </nav>
 
-    <nav class="nav">
-      
-
-      
-    </nav>
+    
 
   </div>
   <script src="/js/navicon-shift.js"></script>
 </section>
 <section class="section">
-  <div class="container">
+  <article class="container">
     <div class="subtitle tags is-6 is-pulled-right">
       
       
@@ -104,6 +117,7 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
     <h2 class="subtitle is-6">May 2, 2018</h2>
     <h1 class="title">Understanding Modulo Bias</h1>
     
+
     <div class="content">
       <p>It is often said that this code:</p>
 <pre><code>unsigned int randomNumber = rand() % k;
@@ -130,96 +144,20 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
 </table>
 <p>So, effectively, the \(P(\text{randomNumber} = 2) = \frac{3}{10}\); in contrast, \(P(\text{randomNumber} = 0) = \frac{4}{10}\). Essentially, the problem lies in the fact that since \(k\) does not evenly divide <code>RAND_MAX</code>, this gets you up to \(1\) more value falling into the first few numbers in the range. To get a feeling for this, you can play around with the plot below, which shows the precise probabilities for different values of <code>RAND_MAX</code> and \(k\):</p>
 <div style="display:flex;margin:auto;">
-  <div style="flex:0 0 40%;margin-top:50pt;">
+  <div style="flex:0 0 50%;margin-top:50pt;">
     <form>
         <fieldset>
           <label for="modulo-bias-M"><code>RAND_MAX</code></label>
-          <input id="modulo-bias-M" type="number" min="0" max="1000" value="11" step="1" onChange="redrawModuloBiasPlot()" placeholder="M">
+          <input id="modulo-bias-M" type="number" min="0" max="1000" value="11" step="1" placeholder="M">
         </fieldset>
         <fieldset>
             <label for="modulo-bias-k">k</label>
-            <input id="modulo-bias-k" type="number" min="1" max="1000" value="10" step="1" onChange="redrawModuloBiasPlot()" placeholder="k">
+            <input id="modulo-bias-k" type="number" min="1" max="1000" value="10" step="1" placeholder="k">
         </fieldset>
     </form>
   </div>
   <div id="modulo-bias-plot" style="flex:1;"></div>
 </div>
-<script src="https://cdn.plot.ly/plotly-1.36.1.min.js"></script>
-<script>
-  function generateModuloBiasPlotData(M, k) {
-    var targets = Array(k);
-    var counts = Array(k);
-
-    for (var i = 0; i < k; i++) {
-      targets[i] = i;
-      counts[i] = 0;
-    }
-
-    for (var i = 0; i < M; i++) {
-      counts[i % k] += 1;
-    }
-
-    for (var i = 0; i < k; i++) {
-      counts[i] /= M;
-    }
-
-    return {
-      targets: targets,
-      counts: counts
-    }
-  }
-
-  function readModuloBiasPlotData() {
-    var M = document.getElementById('modulo-bias-M').valueAsNumber;
-    var k = document.getElementById('modulo-bias-k').valueAsNumber;
-
-    if (k <= 1 || M <= 1 || k > M) {
-      console.log('Invalid values');
-      console.log(k);
-      console.log(M);
-      return null;
-    }
-
-    return generateModuloBiasPlotData(M, k);
-  }
-
-  function redrawModuloBiasPlot() {
-    var data = readModuloBiasPlotData();
-
-    if (data != null) {
-      Plotly.restyle('modulo-bias-plot', 'x', [data.targets]);
-      Plotly.restyle('modulo-bias-plot', 'y', [data.counts]);
-    }
-
-    return false;
-  }
-
-  function drawModuloBiasPlot() {
-    var data = readModuloBiasPlotData();
-
-    Plotly.plot('modulo-bias-plot', {
-      data: [{
-        x: data.targets,
-        y: data.counts,
-        type: 'bar'
-      }],
-      layout: {
-        title: 'Histogram for randomNumber',
-        xaxis: {
-          title: 'randomNumber'
-        },
-        yaxis: {
-          title: 'Probability'
-        },
-        width: 400,
-        height: 400
-      }
-    });
-  }
-
-  drawModuloBiasPlot();
-
-</script>
 <p>Effectively, the effect of the parameter \(k\) becomes more pronounced when the value of \(M \% k\) gets bigger; until it gets too big (i.e. \(k = M - 1\)), and then it is almost as if you didn&rsquo;t have the problem. More formally, we can analyze this by setting \(X\) to be a discrete random variable such that \(R_X = \{0, &hellip;, M-1\}\), with \(M-1 \in \mathbb{N}\) being the highest achievable number for the random generator and \(P(X = i) = \frac{1}{M}\).</p>
 <p>Let \(Y = X \% k\). What we want is to find out what the probability distribution function of \(Y\) is, since that will give us a way to properly understand what is happening. First of all, notice that \(R_Y = \{0, &hellip;, k-1\}\). Hence, the probability:</p>
 <script type="math/tex; mode=display">
@@ -248,84 +186,14 @@ P(Y = i) = \frac{\lfloor \frac{M - 1 - i}{k} \rfloor + 1}{M}
 <p>How bad this is depends on what you are doing. A more interesting question is how to quantify how bad it can be. One way to go about quantifying is to measure how different the distribution of \(Y\) is with respect to the distribution of \(Z\); <a href="https://en.wikipedia.org/wiki/Divergence_(statistics)">there are a myriad of ways to do this</a>, but I am going to use the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a>.</p>
 <p>Thus, suppose \(Z\) was a uniformly distributed random variable such that \(R_Z = \{0, .., k - 1\}\) (i.e. the actual distribution we wanted to achieve). Given some \(M\), we know that \(k\) can range between \(1 \leq k \leq M - 1\); for each of these values, we have one probability distribution, call it \(Y\), and we can compute \(\text{KL}(Z||Y)\):</p>
 <div style="display:flex;margin:auto;">
-  <div style="flex:0 0 40%;margin-top:50pt;">
+  <div style="flex:0 0 50%;margin-top:50pt;">
     <fieldset>
         <label for="modulo-distribution-M">M</label>
-        <input id="modulo-distribution-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloDistributionPlot()" placeholder="M">
+        <input id="modulo-distribution-M" type="number" min="0" value="2000" step="1" placeholder="M">
     </fieldset>
   </div>
   <div id="modulo-distribution-plot" style="flex:1;"></div>
 </div>
-<script>
-  function generateModuloDistributionPlotData(M) {
-  	var targets = Array(M - 1);
-    var values = Array(M - 1);
-    
-    for (var k = 1; k < M; k++) {
-    	var value = 0.0;
-      for (var i = 0; i < k; i++) {
-      	value += Math.log2((k / M) * Math.ceil((M - i)/k));
-      }
-      value = -(value / k);
-      
-      targets[k - 1] = k;
-      values[k - 1] = value;
-    }
-    
-    return {
-      targets: targets,
-      values: values
-    };
-  }
-
-  function readModuloDistributionPlotData() {
-    var M = document.getElementById('modulo-distribution-M').valueAsNumber;
-
-    if (M <= 1) {
-      console.log('Invalid values');
-      console.log(M);
-      return null;
-    }
-
-    return generateModuloDistributionPlotData(M);
-  }
-
-  function redrawModuloDistributionPlot() {
-    var data = readModuloDistributionPlotData();
-
-    if (data != null) {
-      Plotly.restyle('modulo-distribution-plot', 'x', [data.targets]);
-      Plotly.restyle('modulo-distribution-plot', 'y', [data.values]);
-    }
-
-    return false;
-  }
-
-  function drawModuloDistributionPlot() {
-    var data = readModuloDistributionPlotData();
-
-    Plotly.plot('modulo-distribution-plot', {
-      data: [{
-        x: data.targets,
-        y: data.values,
-        type: 'scatter'
-      }],
-      layout: {
-        xaxis: {
-          title: 'k'
-        },
-        yaxis: {
-          title: 'KL(Z||Y)'
-        },
-        width: 400,
-        height: 400
-      }
-    });
-  }
-
-  drawModuloDistributionPlot();
-
-</script>
 <p>If you look at different values of \(M\), it will become clear that \(\text{KL}(Z||Y)\) only reaches 0 when \(k\) evenly divides \(M\); and thus some values of \(M\) don&rsquo;t ever get a point that reaches \(0\); specifically, these are the prime numbers.</p>
 <p>Furthermore, the space between the zeros becomes bigger and bigger as \(M\) increases. This is basically because even divisors of \(M\) are more spaced out as they get larger; this is easy to see by looking at the prime decomposition of \(M = \prod_{i=1}^b p_i^{r_i} \): every even divisor can only look just like the decomposition, just with a lesser or equal value for each \(r_i\), which means that increases in value are multiplicative!.</p>
 <p>The last key to understand this is the parabolas. Why do we have an inverted parabola between each even divisor?. That is simply because of how modulo works!:</p>
@@ -366,81 +234,14 @@ randomNumber = randomNumber % k;
 <p>We don&rsquo;t really need to do anything to prove that this is correct: it is clear that the first four lines sample a number from the range \(\{0, &hellip;, \lfloor \frac{M}{k} \rfloor k - 1\}\) uniformly at random (from the proof of the previous scheme), and then using modulo on that changes it to a uniform distribution with the desired range (due to the first scheme&rsquo;s proof).</p>
 <p>The only interesting change here is the number of calls to <code>rand()</code>. Now, the probability that a number is in the desired range for the loop is \( \frac{M - (M \% k)}{M} = 1 - \frac{M \% k}{M}\), and thus the number of iterations is \(N \sim \text{Geometric}(1 - \frac{M \% k}{M})\). We can now look at the expected number of iterations for different values of \(k\) and \(M\):</p>
 <div style="display:flex;margin:auto;">
-  <div style="flex:0 0 40%;margin-top:50pt;">
+  <div style="flex:0 0 50%;margin-top:50pt;">
     <fieldset>
       <label for="modulo-expectation-M">M</label>
-      <input id="modulo-expectation-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloExpectationPlot()" placeholder="M">
+      <input id="modulo-expectation-M" type="number" min="0" value="2000" step="1" placeholder="M">
     </fieldset>
   </div>
   <div id="modulo-expectation-plot" style="flex:1;"></div>
 </div>
-<script>
-  function generateModuloExpectationPlotData(M) {
-    var targets = Array(M - 1);
-    var values = Array(M - 1);
-
-    for (var k = 1; k < M; k++) {
-      var value = 1.0 / (1.0 - ((M % k) / M));
-
-      targets[k - 1] = k;
-      values[k - 1] = value;
-    }
-
-    return {
-      targets: targets,
-      values: values
-    };
-  }
-
-  function readModuloExpectationPlotData() {
-    var M = document.getElementById('modulo-expectation-M').valueAsNumber;
-
-    if (M <= 1) {
-      console.log('Invalid values');
-      console.log(M);
-      return null;
-    }
-
-    return generateModuloExpectationPlotData(M);
-  }
-
-  function redrawModuloExpectationPlot() {
-    var data = readModuloExpectationPlotData();
-
-    if (data != null) {
-      Plotly.restyle('modulo-expectation-plot', 'x', [data.targets]);
-      Plotly.restyle('modulo-expectation-plot', 'y', [data.values]);
-    }
-
-    return false;
-  }
-
-  function drawModuloExpectationPlot() {
-    var data = readModuloExpectationPlotData();
-
-    Plotly.plot('modulo-expectation-plot', {
-      data: [{
-        x: data.targets,
-        y: data.values,
-        type: 'scatter'
-      }],
-      layout: {
-        title: 'Expected iterations as a function of k',
-        xaxis: {
-          title: 'k'
-        },
-        yaxis: {
-          title: 'E[N]'
-        },
-        height: 400,
-        width: 400,
-      }
-    });
-  }
-
-  drawModuloExpectationPlot();
-
-</script>
 <p>Indeed, this is pretty much what we would reasonably expect to happen: the bigger \(M \% k\) is the more wastage we incur, and thus more iterations are needed. We can prove, however, that the <em>expected</em> number of iterations is bounded by \(2\):</p>
 <script type="math/tex; mode=display">
 \begin{split}
@@ -460,131 +261,90 @@ P(N > t) &= (\frac{M \% k}{M})^t\\
 </script>
 <p>The closer \( \lfloor \frac{M}{k} \rfloor \frac{k}{M} \) is to \(1\), the less probable it will be to spend more iterations. Of course, this term looks pretty similar to the expected number of iterations, just inverted and divided by two:</p>
 <div style="display:flex;margin:auto;">
-  <div style="flex:0 0 40%;margin-top:50pt;">
+  <div style="flex:0 0 50%;margin-top:50pt;">
     <fieldset>
       <label for="modulo-cdf-M">M</label>
-      <input id="modulo-cdf-M" type="number" min="0" value="2000" step="1" onChange="redrawModuloCDFPlot()" placeholder="M">
+      <input id="modulo-cdf-M" type="number" min="0" value="2000" step="1" placeholder="M">
     </fieldset>
   </div>
   <div id="modulo-cdf-plot" style="flex:1;"></div>
 </div>
-<script>
-  function generateModuloCDFPlotData(M) {
-    var targets = Array(M - 1);
-    var values = Array(M - 1);
-
-    for (var k = 1; k < M; k++) {
-      var value = Math.floor(M / k) * (k / M);
-
-      targets[k - 1] = k;
-      values[k - 1] = value;
-    }
-
-    return {
-      targets: targets,
-      values: values
-    };
-  }
-
-  function readModuloCDFPlotData() {
-    var M = document.getElementById('modulo-cdf-M').valueAsNumber;
-
-    if (M <= 1) {
-      console.log('Invalid values');
-      console.log(M);
-      return null;
-    }
-
-    return generateModuloCDFPlotData(M);
-  }
-
-  function redrawModuloCDFPlot() {
-    var data = readModuloCDFPlotData();
-
-    if (data != null) {
-      Plotly.restyle('modulo-cdf-plot', 'x', [data.targets]);
-      Plotly.restyle('modulo-cdf-plot', 'y', [data.values]);
-    }
-
-    return false;
-  }
-
-  function drawModuloCDFPlot() {
-    var data = readModuloCDFPlotData();
-
-    Plotly.plot('modulo-cdf-plot', {
-      data: [{
-        x: data.targets,
-        y: data.values,
-        type: 'scatter'
-      }],
-      layout: {
-        title: 'Second term as a function of k',
-        xaxis: {
-          title: 'k'
-        },
-        yaxis: {
-          title: 'Second Term'
-        },
-        width: 400,
-        height: 400,
-      }
-    });
-  }
-
-  drawModuloCDFPlot();
-
-</script>
 <p>It is pretty easy to see that this term is always greater than \(\frac{1}{2}\). Plugging this into the previous formula, we get that \(P(N &gt; t) \leq (\frac{1}{2})^t\).</p>
 <p>{1} Knuth, Donald. 1994. Concrete Mathematics.</p>
 
       
-      <div class="related">
-
-<h3>Similar articles:</h3>
-<ul>
-	
-	<li><a href="/yet-another-proof-of-brookes-theorem/">Yet Another Proof of Brooke&#39;s Theorem</a></li>
-	
-	<li><a href="/matrix-trace-characterization/">Characterizing the trace of a matrix</a></li>
-	
-</ul>
-</div>
-      
     </div>
     
+  </article>
+</section>
+
+<section class="section" style="padding: 0px;">
+    <div class="container has-text-centered">
+        <hr />
+
+        For comments and discussion, feel free to reach out via <a href="mailto:julian@bayardo.info">email</a>
+        or <span class="twitter"></span><a href="https://twitter.com/search?q=https%3a%2f%2fjulian.bayardo.info%2funderstanding-modulo-bias%2f" rel="author">Twitter</a>
+        </span>
+    </div>
+</section>
+<section class="section" style="padding-top: 0px;">
+  <div class="container">
+    <hr />
+
+    <p style="float: left;">&copy; Julian Bayardo Spadafora 2015-2020</p>
+
+    <div style="float: right;">
+      <a href="https://julian.bayardo.info/understanding-modulo-bias/#">Back to Top</a>
+    </div>
   </div>
 </section>
 
-
+<script>
+  
+  (function addHeadingLinks() {
+    var article = document.querySelector('div.content');
+    var headings = article.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(function (heading) {
+      if (heading.id) {
+        var link = document.createElement('a');
+        link.innerHTML = '\n\x3csvg xmlns=\x22http:\/\/www.w3.org\/2000\/svg\x22 width=\x2216\x22 height=\x2216\x22 viewBox=\x220 0 8 8\x22\x3e\n  \x3cpath\n    d=\x22M5.88.03c-.18.01-.36.03-.53.09-.27.1-.53.25-.75.47a.5.5 0 1 0 .69.69c.11-.11.24-.17.38-.22.35-.12.78-.07 1.06.22.39.39.39 1.04 0 1.44l-1.5 1.5c-.44.44-.8.48-1.06.47-.26-.01-.41-.13-.41-.13a.5.5 0 1 0-.5.88s.34.22.84.25c.5.03 1.2-.16 1.81-.78l1.5-1.5c.78-.78.78-2.04 0-2.81-.28-.28-.61-.45-.97-.53-.18-.04-.38-.04-.56-.03zm-2 2.31c-.5-.02-1.19.15-1.78.75l-1.5 1.5c-.78.78-.78 2.04 0 2.81.56.56 1.36.72 2.06.47.27-.1.53-.25.75-.47a.5.5 0 1 0-.69-.69c-.11.11-.24.17-.38.22-.35.12-.78.07-1.06-.22-.39-.39-.39-1.04 0-1.44l1.5-1.5c.4-.4.75-.45 1.03-.44.28.01.47.09.47.09a.5.5 0 1 0 .44-.88s-.34-.2-.84-.22z\x22 \/\x3e\n\x3c\/svg\x3e\n';
+        link.href = '#' + heading.id;
+        link.style.float = 'right';
+        link.style.borderBottom = '0';
+        heading.append(link);
+      }
+    });
+  })();
+</script>
 
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+           extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+  </script>
 
-<script type="text/javascript" async
+<script type="text/javascript" async="true" defer="true"
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+  </script>
 
-<section class="section">
-  <div class="container has-text-centered">
-    <p></p>
-    
-  </div>
-</section>
+
+
+
+
+
+
+<script type="text/javascript" async="true" defer="true" src="https://julian.bayardo.info/post/understanding-modulo-bias/plots.js"></script>
 
 
 
 </body>
-</html>
 
+</html>
