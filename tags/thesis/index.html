@@ -159,6 +159,8 @@ $$f_i^{r_i} (x) = \frac{1}{2 r_i} (r_i^2 - || x - (p_i + r_i n_i) ||^2)$$
   </div>
 </section>
 
+
+
 <section class="section" style="padding-top: 0px;">
   <div class="container">
     <hr />
@@ -190,38 +192,40 @@ $$f_i^{r_i} (x) = \frac{1}{2 r_i} (r_i^2 - || x - (p_i + r_i n_i) ||^2)$$
 </script>
 
 <script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\[', '\]']],
-      processEscapes: true,
-      processEnvironments: true,
-      autoload: {
-        color: [],
-        colorV2: ['color']
-      },
-      packages: { '[+]': ['noerrors'] }
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-      ignoreHtmlClass: 'tex2jax_ignore',
-      processHtmlClass: 'tex2jax_process'
-    },
-    loader: {
-      load: ['input/asciimath', '[tex]/noerrors']
-    }
-  };
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\[', '\]']],
+            processEscapes: true,
+            processEnvironments: true,
+            autoload: {
+                color: [],
+                colorV2: ['color']
+            },
+            packages: { '[+]': ['noerrors'] }
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+        },
+        loader: {
+            load: ['input/asciimath', '[tex]/noerrors']
+        }
+    };
 </script>
 
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
+<script type="text/javascript" id="MathJax-script" async="true" defer="true"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
 
 
 
 
 
 
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js"></script>
 
 </body>
 

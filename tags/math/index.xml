@@ -34,16 +34,5 @@ The reason why it is bad is pretty elementary and easy to understand: imagine yo
 The usual way to prove this result is to use the Greedy coloring algorithm: go through every node, and pick the lowest color not yet used by any of its neighbors.</description>
     </item>
     
-    <item>
-      <title>Characterizing the trace of a matrix</title>
-      <link>https://julian.bayardo.info/matrix-trace-characterization/</link>
-      <pubDate>Fri, 24 Jul 2015 20:09:13 -0300</pubDate>
-      
-      <guid>https://julian.bayardo.info/matrix-trace-characterization/</guid>
-      <description>I have been studying for my finals lately, and so I decided to put together a proof of a nice exercise I found in some book. The trace function, given by \(tr : \mathbb{K}^{n \times n} \to \mathbb{K}\), is defined as
-tr(A) = \sum_{i=1}^n A_{ii}  First of all, the proof of additivity
-\begin{equation} \begin{split} tr(A + B) &amp;= \sum_{i=1}^n (A+B)_{ii} \\ &amp;= \sum_{i=1}^n (A)_{ii} + (B)_{ii} \\ &amp;= \sum_{i=1}^n (A)_{ii} + \sum_{i=1}^n (B)_{ii} \\ &amp;= tr(A) + tr(B) \end{split} \end{equation}  Afterwards, the proof of homogeneity</description>
-    </item>
-    
   </channel>
 </rss>
