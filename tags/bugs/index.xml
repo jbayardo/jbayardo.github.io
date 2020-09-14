@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bugs on Julian through the Lens</title>
+    <link>https://julian.bayardo.info/tags/bugs/</link>
+    <description>Recent content in bugs on Julian through the Lens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; Julian Bayardo Spadafora 2015-2020</copyright>
+    <lastBuildDate>Mon, 14 Sep 2020 01:41:00 -0700</lastBuildDate>
+    
+	<atom:link href="https://julian.bayardo.info/tags/bugs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fun Bugs: Episode I</title>
+      <link>https://julian.bayardo.info/fun-bugs-part-1/</link>
+      <pubDate>Mon, 14 Sep 2020 01:41:00 -0700</pubDate>
+      
+      <guid>https://julian.bayardo.info/fun-bugs-part-1/</guid>
+      <description>Introduction I&amp;rsquo;ve been meaning to get started on a series talking about the kind of bugs we find in production on the CloudBuild Cache. For a little bit of context, our team runs over 40k machines across the US, with over 85 PB of total storage capacity, and serve as a caching layer for lots of things: source code, NuGet packages, build artifacts, etc etc. We basically provide a P2P cache made specifically for builds within CloudBuild, though the current implementation is nothing like the paper.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Julian Bayardo Spadafora 2015-2020</copyright>
-    <lastBuildDate>Tue, 21 Aug 2018 01:10:11 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 01:41:00 -0700</lastBuildDate>
     
 	<atom:link href="https://julian.bayardo.info/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>bugs</title>
+      <link>https://julian.bayardo.info/tags/bugs/</link>
+      <pubDate>Mon, 14 Sep 2020 01:41:00 -0700</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/bugs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emacs</title>
+      <link>https://julian.bayardo.info/tags/emacs/</link>
+      <pubDate>Sat, 12 Sep 2020 23:02:00 -0700</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>personal</title>
+      <link>https://julian.bayardo.info/tags/personal/</link>
+      <pubDate>Sat, 02 May 2020 11:35:00 -0700</pubDate>
+      
+      <guid>https://julian.bayardo.info/tags/personal/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>linear-algebra</title>

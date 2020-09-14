@@ -3,8 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://julian.bayardo.info/tags/bugs/</loc>
+    <lastmod>2020-09-14T01:41:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/fun-bugs-part-1/</loc>
+    <lastmod>2020-09-14T01:41:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://julian.bayardo.info/</loc>
-    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
+    <lastmod>2020-09-14T01:41:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/</loc>
+    <lastmod>2020-09-14T01:41:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/emacs/</loc>
+    <lastmod>2020-09-12T23:02:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/emacs-on-windows-in-2020/</loc>
+    <lastmod>2020-09-12T23:02:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/a-year-at-microsoft/</loc>
+    <lastmod>2020-05-02T11:35:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://julian.bayardo.info/tags/personal/</loc>
+    <lastmod>2020-05-02T11:35:00-07:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +54,6 @@
   
   <url>
     <loc>https://julian.bayardo.info/tags/non-convex-hull/</loc>
-    <lastmod>2018-08-21T01:10:11-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://julian.bayardo.info/tags/</loc>
     <lastmod>2018-08-21T01:10:11-03:00</lastmod>
   </url>
   
