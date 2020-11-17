@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Julian Bayardo Spadafora 2015-2020</copyright>
-    <lastBuildDate>Wed, 02 May 2018 20:26:06 -0300</lastBuildDate>
-    
-	<atom:link href="https://julian.bayardo.info/tags/probability/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 02 May 2018 20:26:06 -0300</lastBuildDate><atom:link href="https://julian.bayardo.info/tags/probability/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding Modulo Bias</title>
       <link>https://julian.bayardo.info/understanding-modulo-bias/</link>

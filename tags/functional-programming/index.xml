@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; Julian Bayardo Spadafora 2015-2020</copyright>
-    <lastBuildDate>Sat, 02 Jun 2018 20:51:15 -0300</lastBuildDate>
-    
-	<atom:link href="https://julian.bayardo.info/tags/functional-programming/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 02 Jun 2018 20:51:15 -0300</lastBuildDate><atom:link href="https://julian.bayardo.info/tags/functional-programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Processing Trees with Recursion Schemes</title>
       <link>https://julian.bayardo.info/processing-trees-recursion-schemes/</link>
