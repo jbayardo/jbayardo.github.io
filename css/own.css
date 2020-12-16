@@ -2,21 +2,19 @@ figure {
     display: block;
     margin-top: 1em;
     margin-bottom: 1em;
-    margin-left: 40px;
-    margin-right: 40px;
-}
+} 
 
 figure > figcaption {
+    margin-top: 0.5em;
     text-align: center;
 }
 
 figure > img {
-    display: block;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    margin-top: 0pt;
-    margin-bottom: 1em;
+    display: block;
+    width: 100%;
 }
 
 .read-more {

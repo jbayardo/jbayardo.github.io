@@ -113,7 +113,7 @@
 <p>I&rsquo;ve been meaning to get started on a series talking about the kind of bugs we find in production on the CloudBuild Cache. For a little bit of context, our team runs over 40k machines across the US, with over 85 PB of total storage capacity, and serve as a caching layer for lots of things: source code, NuGet packages, build artifacts, etc etc. We basically provide a P2P cache made specifically for builds within <a href="https://www.microsoft.com/en-us/research/publication/cloudbuild-microsofts-distributed-and-caching-build-service/">CloudBuild</a>, though the current implementation is nothing like the paper.</p>
 <p>The scale and sheer number of operations we run ends up causing every nook and cranny of the code to be run in parallel at different times, which usually leads to <em>really</em> interesting bugs. The attempt of this &ldquo;series&rdquo; will be to show those to others, so that they may hopefully get a laugh, maybe even learn something (and also so I get more fluent at writing).</p>
 <figure>
-    <img src="/post/fun-bugs-part-1/this-is-fine.jpeg" alt="This is fine">
+    <img src="/post/fun-bugs-part-1/this-is-fine.jpeg" alt="This is fine" style="max-width:500px;">
     <figcaption>
     A day on the job
     </figcaption>
@@ -154,7 +154,7 @@
 </ol>
 <p>Essentially, this:</p>
 <figure>
-    <img src="/post/fun-bugs-part-1/it-crowd.jpg" alt="Hello, IT. Have you tried turning it off and on again?">
+    <img src="/post/fun-bugs-part-1/it-crowd.jpg" alt="Hello, IT. Have you tried turning it off and on again?" style="max-width:500px;">
     <figcaption>
     Our bug-crushing strategy
     </figcaption>
