@@ -1,5 +1,5 @@
 function generateCosineSimilarityData(
-    n_i, p_i, start, end, resolution, delta_normed = false) {
+  n_i, p_i, start, end, resolution, delta_normed = false) {
   xs = [];
   ys = [];
   zs = [];
@@ -35,17 +35,42 @@ function drawCosineSimilarityHeatmap(identifier, delta_normed) {
   n_i = math.divide(n_i, math.norm(n_i));
 
   var p_i = math.matrix([1, 1]);
-  var data = generateCosineSimilarityData(n_i, p_i, -4, 6, 0.1, delta_normed);
+
+  var start = 0;
+  var end = 2;
+  var resolution = 0.01;
+
+  var data = generateCosineSimilarityData(n_i, p_i, start, end, resolution, delta_normed);
 
   var title = 'Cosine Similarity';
   if (delta_normed) {
     title = 'Rho Estimate';
   }
 
-  Plotly.plot(identifier, {
-    data: [{x: data.xs, y: data.ys, z: data.zs, type: 'heatmap'}],
-    layout: {title: title, width: 400, height: 400}
-  });
+  var plotData = [{
+    x: data.xs,
+    y: data.ys,
+    z: data.zs,
+    type: 'heatmap',
+    zmin: delta_normed ? -10 : -1,
+    zmax: delta_normed ? 10 : 1,
+  }];
+
+  var layout = {
+    title: title,
+    xaxis: {
+      range: [start, end],
+      autorange: false
+    },
+    yaxis: {
+      range: [start, end],
+      autorange: false
+    },
+    width: 400,
+    height: 400
+  };
+
+  Plotly.newPlot(identifier, plotData, layout);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

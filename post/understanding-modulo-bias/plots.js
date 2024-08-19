@@ -48,16 +48,18 @@ function redrawModuloBiasPlot() {
 function drawModuloBiasPlot() {
   var data = readModuloBiasPlotData();
 
-  Plotly.plot('modulo-bias-plot', {
-    data: [{x: data.targets, y: data.counts, type: 'bar'}],
-    layout: {
+  if (data) {
+    var plotData = [{ x: data.targets, y: data.counts, type: 'bar' }];
+    var layout = {
       title: 'Histogram for randomNumber',
-      xaxis: {title: 'randomNumber'},
-      yaxis: {title: 'Probability'},
+      xaxis: { title: 'randomNumber' },
+      yaxis: { title: 'Probability' },
       width: 400,
       height: 400
-    }
-  });
+    };
+
+    Plotly.newPlot('modulo-bias-plot', plotData, layout);
+  }
 }
 
 function generateModuloDistributionPlotData(M) {
@@ -75,7 +77,7 @@ function generateModuloDistributionPlotData(M) {
     values[k - 1] = value;
   }
 
-  return {targets: targets, values: values};
+  return { targets: targets, values: values };
 }
 
 function readModuloDistributionPlotData() {
@@ -101,19 +103,23 @@ function redrawModuloDistributionPlot() {
   return false;
 }
 
+
 function drawModuloDistributionPlot() {
   var data = readModuloDistributionPlotData();
 
-  Plotly.plot('modulo-distribution-plot', {
-    data: [{x: data.targets, y: data.values, type: 'scatter'}],
-    layout: {
-      xaxis: {title: 'k'},
-      yaxis: {title: 'KL(Z||Y)'},
+  if (data) {
+    var plotData = [{ x: data.targets, y: data.values, type: 'scatter' }];
+    var layout = {
+      xaxis: { title: 'k' },
+      yaxis: { title: 'KL(Z||Y)' },
       width: 400,
       height: 400
-    }
-  });
+    };
+
+    Plotly.newPlot('modulo-distribution-plot', plotData, layout);
+  }
 }
+
 
 function generateModuloExpectationPlotData(M) {
   var targets = Array(M - 1);
@@ -126,7 +132,7 @@ function generateModuloExpectationPlotData(M) {
     values[k - 1] = value;
   }
 
-  return {targets: targets, values: values};
+  return { targets: targets, values: values };
 }
 
 function readModuloExpectationPlotData() {
@@ -155,16 +161,18 @@ function redrawModuloExpectationPlot() {
 function drawModuloExpectationPlot() {
   var data = readModuloExpectationPlotData();
 
-  Plotly.plot('modulo-expectation-plot', {
-    data: [{x: data.targets, y: data.values, type: 'scatter'}],
-    layout: {
+  if (data) {
+    var plotData = [{ x: data.targets, y: data.values, type: 'scatter' }];
+    var layout = {
       title: 'Expected iterations as a function of k',
-      xaxis: {title: 'k'},
-      yaxis: {title: 'E[N]'},
+      xaxis: { title: 'k' },
+      yaxis: { title: 'E[N]' },
       height: 400,
       width: 400,
-    }
-  });
+    };
+
+    Plotly.newPlot('modulo-expectation-plot', plotData, layout);
+  }
 }
 
 function generateModuloCDFPlotData(M) {
@@ -178,7 +186,7 @@ function generateModuloCDFPlotData(M) {
     values[k - 1] = value;
   }
 
-  return {targets: targets, values: values};
+  return { targets: targets, values: values };
 }
 
 function readModuloCDFPlotData() {
@@ -207,16 +215,18 @@ function redrawModuloCDFPlot() {
 function drawModuloCDFPlot() {
   var data = readModuloCDFPlotData();
 
-  Plotly.plot('modulo-cdf-plot', {
-    data: [{x: data.targets, y: data.values, type: 'scatter'}],
-    layout: {
+  if (data) {
+    var plotData = [{ x: data.targets, y: data.values, type: 'scatter' }];
+    var layout = {
       title: 'Second term as a function of k',
-      xaxis: {title: 'k'},
-      yaxis: {title: 'Second Term'},
+      xaxis: { title: 'k' },
+      yaxis: { title: 'Second Term' },
       width: 400,
       height: 400,
-    }
-  });
+    };
+
+    Plotly.newPlot('modulo-cdf-plot', plotData, layout);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -226,17 +236,16 @@ document.addEventListener('DOMContentLoaded', () => {
   drawModuloCDFPlot();
 
   document.getElementById('modulo-bias-M')
-      .addEventListener('change', redrawModuloBiasPlot);
+    .addEventListener('change', redrawModuloBiasPlot);
   document.getElementById('modulo-bias-k')
-      .addEventListener('change', redrawModuloBiasPlot);
-
+    .addEventListener('change', redrawModuloBiasPlot);
 
   document.getElementById('modulo-distribution-M')
-      .addEventListener('change', redrawModuloDistributionPlot);
+    .addEventListener('change', redrawModuloDistributionPlot);
 
   document.getElementById('modulo-expectation-M')
-      .addEventListener('change', redrawModuloExpectationPlot);
+    .addEventListener('change', redrawModuloExpectationPlot);
 
   document.getElementById('modulo-cdf-M')
-      .addEventListener('change', redrawModuloCDFPlot);
+    .addEventListener('change', redrawModuloCDFPlot);
 });

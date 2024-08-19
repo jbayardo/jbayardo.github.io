@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <title>Julián Bayardo Spadafora</title>
+      <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap">
+    <style>:root {
+  color-scheme: light dark;
+
+  --color-background: #ffffff; /* White */
+  --color-muted: #f3f4f5; /* Light Gray 200 */
+  --color-primary: #191e23; /* Dark Gray 900 */
+  --color-secondary: #6c7781; /* Dark Gray 300 */
+  --color-accent: #ffb900; /* Accent Yellow */
+  --color-link: #46b450; /* Accent Green */
+
+  --scale-ratio: 1.25;
+  --scale0: 1rem;
+  --scale1: calc(var(--scale0) * var(--scale-ratio));
+  --scale2: calc(var(--scale1) * var(--scale-ratio));
+  --scale3: calc(var(--scale2) * var(--scale-ratio));
+  --scale4: calc(var(--scale3) * var(--scale-ratio));
+  --scale5: calc(var(--scale4) * var(--scale-ratio));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #191e23; /* Dark Gray 900 */
+    --color-muted: #23282d; /* Dark Gray 800 */
+    --color-primary: #fbfbfc; /* Light Gray 100 */
+    --color-secondary: #ccd0d4; /* Light Gray 700 */
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-primary);
+  display: grid;
+  font: 1em/1.5 Lato, sans-serif;
+  gap: 2em;
+  grid-template-columns:
+    [full-start]
+    1fr
+    [main-start side-start]
+    minmax(min-content, 12em)
+    [side-end content-start]
+    minmax(min-content, 36em)
+    [main-end content-end]
+    1fr
+    [full-end];
+  grid-template-rows: auto [content] 0;
+  margin-bottom: 4em;
+}
+
+body::before {
+  content: '';
+  grid-column: full;
+  grid-row: content;
+}
+
+ol,
+ul {
+  padding-left: 1em;
+}
+
+:not(.icon-list, .tag-list) > li + li {
+  margin-top: 0.4em;
+}
+
+li::marker,
+.network {
+  color: var(--color-secondary);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:focus,
+a:hover {
+  color: var(--color-accent);
+}
+
+h1,
+h2,
+h3,
+h5 {
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--scale5);
+}
+
+h2 {
+  color: var(--color-secondary);
+  font-size: var(--scale4);
+}
+
+h3 {
+  color: var(--color-accent);
+  font-size: var(--scale3);
+  grid-column: side;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: var(--scale2);
+}
+
+h5 {
+  font-size: var(--scale1);
+}
+
+h6 {
+  font-size: var(--scale0);
+}
+
+blockquote {
+  border-left: 0.2em solid var(--color-muted);
+  padding-left: 1em;
+}
+
+cite {
+  color: var(--color-secondary);
+  font-style: inherit;
+}
+
+cite::before {
+  content: '— ';
+}
+
+svg {
+  margin-right: 0.2em;
+  vertical-align: -0.2em;
+}
+
+.masthead {
+  background: var(--color-muted);
+  display: inherit;
+  gap: inherit;
+  grid-column: full;
+  grid-template-columns: inherit;
+  padding: 4em 0;
+  text-align: center;
+}
+
+.masthead > *,
+section {
+  grid-column: main;
+}
+
+.masthead > img {
+  border-radius: 50%;
+  margin: 0 auto;
+  max-width: 12em;
+}
+
+article > * + *,
+blockquote > * + * {
+  margin-top: 0.6em;
+}
+
+.meta {
+  color: var(--color-secondary);
+}
+
+.stack {
+  display: grid;
+  gap: 1.5em;
+}
+
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1em;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.grid-list {
+  display: grid;
+  gap: 1em;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  list-style: none;
+  padding: 0;
+}
+
+.tag-list > li {
+  background: var(--color-muted);
+  border-radius: 0.2em;
+  padding: 0.2em 0.6em;
+}
+
+.bullet-item:not(:first-child)::before {
+  content: '· ';
+  margin: 0 0.2em;
+}
+
+@media print, (min-width: 48em) {
+  h3 {
+    text-align: right;
+    margin-bottom: inherit;
+  }
+
+  .masthead {
+    text-align: inherit;
+  }
+
+  .masthead > *,
+  section {
+    grid-column: content;
+  }
+
+  .masthead img {
+    grid-column: side;
+    grid-row: span 2;
+    max-width: 100%;
+  }
+
+  section {
+    display: contents;
+  }
+
+  .icon-list {
+    flex-direction: column;
+  }
+
+  .grid-list {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(calc((100% - 1em) / 2), 1fr)
+    );
+  }
+}
+</style>
+  </head>
+  <body>
+      <header class="masthead">
+          <img src="" alt="">
+        <div>
+            <h1>Julián Bayardo Spadafora</h1>
+            <h2>Computer Scientist</h2>
+        </div>
+          <article>
+            
+          </article>
+        <ul class="icon-list">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Redmond, United States
+              </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <a href="mailto:julian@bayardo.info">julian@bayardo.info</a>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <a href="tel:+14254108484">+1 (425) 410 8484</a>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              <a href="https://julian.bayardo.info">julian.bayardo.info</a>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                  <a href="https://www.linkedin.com/in/jbayardo/">jbayardo</a>
+                <span class="network">(LinkedIn)</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                  <a href="https://www.facebook.com/bayardo.julian">bayardo.julian</a>
+                <span class="network">(Facebook)</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                  <a href="https://twitter.com/jbayardos">jbayardos</a>
+                <span class="network">(Twitter)</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  <a href="https://mastodon.social/@jbayardo">jbayardo</a>
+                <span class="network">(Mastodon)</span>
+            </li>
+        </ul>
+      </header>
+
+      <section id="work">
+        <h3>Work</h3>
+        <div class="stack">
+            <article>
+              <header>
+                <h4>Senior Software Engineer (L64)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2024-03-01">Mar 2024</time> –
+                    Present
+                  </div>
+                    <div>Redmond, WA, United States</div>
+                </div>
+              </header>
+                <p>Working in the CloudBuild Team, running distributed builds for most of Microsoft's flagship products. Over 35k nodes for running distributed builds.</p>
+            </article>
+            <article>
+              <header>
+                <h4>Senior Software Engineer (L63)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2022-09-01">Sep 2022</time> –
+                    <time datetime="2024-02-28">Feb 2024</time>
+                  </div>
+                    <div>Redmond, WA, United States</div>
+                </div>
+              </header>
+                <p>Working in the CloudBuild Team, running distributed builds for most of Microsoft's flagship products. Over 35k nodes for running distributed builds.</p>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer II (L62)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2021-09-01">Sep 2021</time> –
+                    <time datetime="2022-08-30">Aug 2022</time>
+                  </div>
+                    <div>Redmond, WA, United States</div>
+                </div>
+              </header>
+                <p>Worked in the CloudBuild Team.</p>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer II (L61)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2020-06-01">Jun 2020</time> –
+                    <time datetime="2021-08-30">Aug 2021</time>
+                  </div>
+                    <div>Vancouver, BC, Canada</div>
+                </div>
+              </header>
+                <p>Worked in the CloudBuild Team.</p>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer (L60)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2019-12-01">Dec 2019</time> –
+                    <time datetime="2020-05-31">May 2020</time>
+                  </div>
+                    <div>Vancouver, BC, Canada</div>
+                </div>
+              </header>
+                <p>Worked in the Unified Cache Team.</p>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer (L59)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2019-05-01">May 2019</time> –
+                    <time datetime="2019-11-30">Nov 2019</time>
+                  </div>
+                    <div>Vancouver, BC, Canada</div>
+                </div>
+              </header>
+                <p>Worked in the Unified Cache Team.</p>
+            </article>
+            <article>
+              <header>
+                <h4>Senior Software Engineer</h4>
+                <div class="meta">
+                  <div>
+                    <strong>MercadoLibre</strong>
+                  </div>
+                  <div>
+                    <time datetime="2018-05-01">May 2018</time> –
+                    <time datetime="2018-10-31">Oct 2018</time>
+                  </div>
+                    <div>CABA, Argentina</div>
+                </div>
+              </header>
+                <p>Worked in the Recommendations team developing product recommendations.</p>
+            </article>
+            <article>
+              <header>
+                <h4>Data Scientist (Intern)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2018-01-01">Jan 2018</time> –
+                    <time datetime="2018-03-31">Mar 2018</time>
+                  </div>
+                    <div>Redmond, WA, United States</div>
+                </div>
+              </header>
+                <p>Worked in the Bing Core Relevance Team, which develops, tests, and deploys models for ranking used in Bing.</p>
+                <ul>
+                    <li><p>Continued a research project on applying reinforcement learning for speeding up search on the Bing indexes, based on the query and its performance characteristics. Managed performance improvements of 20% on average, with little to no relevance loss, when searching queries within the tail segment (&gt;50% of queries).</p></li>
+                </ul>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer (Semi Senior)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>RavenDB (through Corvalius)</strong>
+                  </div>
+                  <div>
+                    <time datetime="2017-08-01">Aug 2017</time> –
+                    <time datetime="2017-11-30">Nov 2017</time>
+                  </div>
+                    <div>CABA, Argentina</div>
+                </div>
+              </header>
+                <p>Part of the RavenDB Core Team, working on database performance optimization in C#.</p>
+                <ul>
+                    <li><p>Evaluated correctness of racy algorithms in the database. This meant both getting very acquainted with the C# memory model, and the specifics of instruction reordering in the target architectures for the database (x86-64 and ARM). Went through all lock free algorithms in it and fixed many data races in the process.</p></li>
+                    <li><p>Optimized concurrent pieces of the codebase. Most of this work was focused with unexpectedly wrong usages of CoreCLR’s thread-safe structures (i.e. ConcurrentQueue and ConcurrentDictionary). Required getting familiar with how they operate, pros and cons, as well as a lot of measuring of our own source code.</p></li>
+                    <li><p>Designed RavenDB’s webserver’s lock-free lazy compression cache. Managed a 10x improvement in load times.</p></li>
+                </ul>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer (Intern)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Google</strong>
+                  </div>
+                  <div>
+                    <time datetime="2017-05-01">May 2017</time> –
+                    <time datetime="2017-07-31">Jul 2017</time>
+                  </div>
+                    <div>Mountain View, CA, United States</div>
+                </div>
+              </header>
+                <p>Worked within the F1 Core DB team for a total of 11 weeks. Throughout my internship, I used C++, as well as other internal languages. All of it was thoroughly code reviewed and tested.</p>
+                <ul>
+                    <li><p>Extended a system for trigger-based continuous and full extraction of data from F1 by adding support for extraction into Spanner. These are 2 databases used internally at Google for global-scale data storage and processing. The system's expected usage was to move data produced by AdWords, so this required a lot of attention to performance and correctness.</p></li>
+                    <li><p>Implemented the system to be fully asynchronous so much care had to be taken to properly handle all the possible edge cases and hazards of multi-threaded environments, as well as the usual transactional concurrency issues.</p></li>
+                    <li><p>Tested the implementation extensively and put the system to work in a test environment.</p></li>
+                </ul>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer (Intern)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2017-01-01">Jan 2017</time> –
+                    <time datetime="2017-03-31">Mar 2017</time>
+                  </div>
+                    <div>Redmond, WA, United States</div>
+                </div>
+              </header>
+                <p>I was a member of the Shared Data team for a total of 12 weeks. This team took care of receiving and processing telemetry from all computers using Windows and Office and building data sets, visualizations, and tools for other teams to use.</p>
+                <ul>
+                    <li><p>Implemented and tested a library (confidential) for estimating data streams aggregate measures using randomized algorithms on a MapReduce-like architecture.</p></li>
+                    <li><p>Developed, verified for correctness, and put into production a low dimensional version of a data set the team already provided.</p></li>
+                    <li><p>Tested the library on the data set and checked the results for correctness.</p></li>
+                    <li><p>Implemented an interface for the library. Through it, the time required for processing some data streams in the clusters reduced from over 12 hours to less than one, while managing to keep interactive querying capabilities.</p></li>
+                    <li><p>Gave a talk for a subset of the DotNet CoreCLR team on the performance optimization techniques in C# used while working on RavenDB.</p></li>
+                </ul>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer (Semi Senior)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>RavenDB (through Corvalius)</strong>
+                  </div>
+                  <div>
+                    <time datetime="2016-09-01">Sep 2016</time> –
+                    <time datetime="2016-12-31">Dec 2016</time>
+                  </div>
+                    <div>CABA, Argentina</div>
+                </div>
+              </header>
+                <p>Part of the RavenDB Core Team, I worked on optimizing the storage engine. This involved rewriting several components for speed, implementing new efficient abstractions, writing benchmarks, and doing general research.</p>
+                <ul>
+                    <li><p>Optimized an algorithm for computing diffs of memory pages to reduce writes of pages modified by transactions to disk.</p></li>
+                    <li><p>Implemented and tested protection mechanisms for pages managed by our unmanaged memory allocators, helping detect bugs and make the use of memory more secure.</p></li>
+                    <li><p>Implemented a lazy string_view-like class for our unmanaged memory strings.</p></li>
+                    <li><p>Built several benchmarks for performance comparison across implementations of our core components.</p></li>
+                    <li><p>Bootstrapped a machine learning project (confidential). Required reading recent research on the subject, gathering data from the already-existing infrastructure and augmenting it, building a baseline model, and doing further experimentation to get better results. This was done in Python, using Keras with Theano.</p></li>
+                </ul>
+            </article>
+            <article>
+              <header>
+                <h4>Software Engineer (Intern)</h4>
+                <div class="meta">
+                  <div>
+                    <strong>Microsoft</strong>
+                  </div>
+                  <div>
+                    <time datetime="2016-01-01">Jan 2016</time> –
+                    <time datetime="2016-03-31">Mar 2016</time>
+                  </div>
+                    <div>Redmond, WA, United States</div>
+                </div>
+              </header>
+                <p>I did my internship with the Office Telemetry team for a total of 12 weeks. This team took care of receiving and processing telemetry from all computers using Office and building data sets, visualizations, and tools for other teams to use.</p>
+                <ul>
+                    <li><p>Explored, implemented, and compared supervised learning models for root cause detection to be used in Office Telemetry data. This was done using Microsoft's internal tools for machine learning on big data.</p></li>
+                    <li><p>Developed, verified for correctness, and put into production a data set aggregating multiple others, considering complex relationships between them. This took a lot of work in both space and time optimization and resulted in a good basis for further development of data sets.</p></li>
+                    <li><p>Built a tool for automated root cause analysis of data quality problems within the Office Telemetry pipeline. All of my code was thoroughly code reviewed and tested.</p></li>
+                    <li><p>Tested the tool on the data set and made sure it worked as expected.</p></li>
+                    <li><p>Implemented a web interface to the previously mentioned tool. This heavily decreased the engineer time required for data quality investigations.</p></li>
+                </ul>
+            </article>
+            <article>
+              <header>
+                <h4>Junior Software Engineer</h4>
+                <div class="meta">
+                  <div>
+                    <strong>MercadoLibre</strong>
+                  </div>
+                  <div>
+                    <time datetime="2015-02-01">Feb 2015</time> –
+                    <time datetime="2015-07-31">Jul 2015</time>
+                  </div>
+                    <div>CABA, Argentina</div>
+                </div>
+              </header>
+                <p>I worked in the Fraud Prevention team for MercadoLibre, the biggest e-commerce platform in Latin America. We built models for automated fraud detection.</p>
+                <ul>
+                    <li><p>Developed, trained, and tested multiple neural network-based models.</p></li>
+                    <li><p>Performed feature extraction and selection from many databases available at the company.</p></li>
+                    <li><p>Implemented scripts to extract and aggregate data from multiple data sources in order to produce the training and testing data sets for the models.</p></li>
+                    <li><p>Developed hand-crafted rules for identifying abusive behavior within the platform. These were used to augment the model with behavior that was hard to encode in the model. This required a lot of data exploration.</p></li>
+                </ul>
+            </article>
+        </div>
+      </section>
+      <section id="volunteer">
+        <h3>Volunteer</h3>
+        <div class="stack">
+            <article>
+              <header>
+                <h4>Keynote Speaker</h4>
+                <div class="meta">
+                  <strong><a href="https://web.archive.org/web/20191209035408/https:/pydata.org/cordoba2018/program-menu/accepted-talks/">PyData Córdoba</a></strong>
+                  <div>
+                    <time datetime="2018-09-29">Sep 2018</time> –
+                    <time datetime="2018-09-30">Sep 2018</time>
+                  </div>
+                </div>
+              </header>
+                <p>Presented some of my work at Mercado Libre, along with an introduction to the word2vec and metaprod2vec architectures for learning representation vectors.</p>
+            </article>
+        </div>
+      </section>
+      <section id="education">
+        <h3>Education</h3>
+        <div class="stack">
+            <article>
+              <header>
+                <h4><a href="http://www.uba.ar">University of Buenos Aires</a></h4>
+                <div class="meta">
+                    <strong>Computer Science</strong>
+                  <div>
+                    <time datetime="2012-03-01">Mar 2012</time> –
+                    <time datetime="2019-03-31">Mar 2019</time>
+                  </div>
+                </div>
+              </header>
+                <p>BSc + MSc</p>
+                <h5>Courses</h5>
+                <ul>
+                    <li><p>Thesis on 3D surface reconstruction from oriented point clouds using Non-Convex Hull methods. Reviewed literature and created a randomized method for O(n log n) expected time reconstruction that approximates the surface with arbitrary precision as points are added. Thesis explains, evaluates, and compares the method to the state of the art.</p></li>
+                </ul>
+            </article>
+        </div>
+      </section>
+      <section id="certificates">
+        <h3>Certificates</h3>
+        <div class="stack">
+            <article>
+              <header>
+                <h4><a href="https://www.cambridgeenglish.org/exams-and-tests/advanced/">Certificate in Advanced English</a></h4>
+                <div class="meta">
+                    <div>
+                      Issued by <strong>University of Cambridge</strong>
+                    </div>
+                    <time datetime="2011-12-01">Dec 2011</time>
+                </div>
+              </header>
+            </article>
+            <article>
+              <header>
+                <h4><a href="https://www.cambridgeenglish.org/exams-and-tests/first/">First Certificate in English</a></h4>
+                <div class="meta">
+                    <div>
+                      Issued by <strong>University of Cambridge</strong>
+                    </div>
+                    <time datetime="2009-12-01">Dec 2009</time>
+                </div>
+              </header>
+            </article>
+        </div>
+      </section>
+      <section id="publications">
+        <h3>Publications</h3>
+        <div class="stack">
+            <article>
+              <header>
+                <h4><a href="https://ieeexplore.ieee.org/abstract/document/8885418">Fast Non-Convex Hull Computation</a></h4>
+                <div class="meta">
+                    <div>
+                      Published by <strong>3DV 2019</strong>
+                    </div>
+                    <time datetime="2019-09-16">Sep 2019</time>
+                </div>
+              </header>
+                <p>This was a paper explaining the main ideas I developed during my thesis. Wwe presented it at the International Conference on 3D Vision 2019 in Quebec City, QC, Canada.</p>
+            </article>
+        </div>
+      </section>
+      <section id="skills">
+        <h3>Skills</h3>
+        <div class="grid-list">
+            <div>
+                <h4>Programming Languages</h4>
+                <ul class="tag-list">
+                    <li>C#</li>
+                    <li>C++</li>
+                    <li>Python</li>
+                    <li>Rust</li>
+                    <li>Haskell</li>
+                    <li>Erlang</li>
+                    <li>Prolog</li>
+                    <li>X64 Assembler</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Database Engines</h4>
+                <ul class="tag-list">
+                    <li>Azure Data Explorer</li>
+                    <li>Azure DataLake</li>
+                    <li>RocksDb</li>
+                    <li>RavenDB</li>
+                    <li>MySQL</li>
+                    <li>MongoDB</li>
+                    <li>Teradata</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Cloud</h4>
+                <ul class="tag-list">
+                    <li>Azure Storage</li>
+                    <li>Azure DevOps</li>
+                    <li>Azure CosmosDB</li>
+                    <li>Azure Functions</li>
+                    <li>Azure SQL</li>
+                    <li>Azure Redis</li>
+                </ul>
+            </div>
+        </div>
+      </section>
+      <section id="languages">
+        <h3>Languages</h3>
+        <div class="grid-list">
+            <div>
+                <h4>Spanish</h4>
+              Native speaker
+            </div>
+            <div>
+                <h4>English</h4>
+              Proficient
+            </div>
+            <div>
+                <h4>French</h4>
+              Basic
+            </div>
+        </div>
+      </section>
+  </body>
+</html>
